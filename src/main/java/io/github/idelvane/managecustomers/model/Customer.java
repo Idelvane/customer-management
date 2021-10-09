@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
-import java.time.ZoneOffset;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -55,13 +53,13 @@ public class Customer implements Serializable{
 	private String document;
 	
 	@Column(name = "birth_date")
-	private Date birthDate;
+	private LocalDateTime birthDate;
 	
 	@Column(name = "created_at")
-	private Date createdAt;
+	private LocalDateTime createdAt;
 	
 	@Column(name = "updated_at")
-	private Date updatedAt;
+	private LocalDateTime updatedAt;
 	
 	/**
 	 * método responsável por retornar a idade do cliente
@@ -69,8 +67,7 @@ public class Customer implements Serializable{
 	 */
 	public int getAge() {
 		final LocalDate dataAtual = LocalDate.now();
-		var birth = LocalDateTime.ofInstant(this.birthDate.toInstant(), ZoneOffset.UTC).toLocalDate();
-	    final Period periodo = Period.between(birth, dataAtual);
+	    final Period periodo = Period.between(this.birthDate.toLocalDate(), dataAtual);
 	    return periodo.getYears();
 	}
 }
