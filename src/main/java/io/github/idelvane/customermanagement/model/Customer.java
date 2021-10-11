@@ -1,4 +1,4 @@
-package io.github.idelvane.managecustomers.model;
+package io.github.idelvane.customermanagement.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -73,8 +73,8 @@ public class Customer implements Serializable{
 	 * @return
 	 */
 	public int getAge() {
-		final LocalDate dataAtual = LocalDate.now();
-	    final Period periodo = Period.between(this.birthDate.toLocalDate(), dataAtual);
-	    return periodo.getYears();
+		final LocalDate now = LocalDate.now();
+	    final Period period = Period.between(this.birthDate.toLocalDate(), now);
+	    return period.getYears();
 	}
 }

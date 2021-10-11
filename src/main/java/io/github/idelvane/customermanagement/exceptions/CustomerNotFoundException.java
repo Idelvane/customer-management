@@ -1,4 +1,4 @@
-package io.github.idelvane.managecustomers.exceptions;
+package io.github.idelvane.customermanagement.exceptions;
 
 public class CustomerNotFoundException extends Exception {
 

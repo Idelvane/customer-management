@@ -1,7 +1,7 @@
 /**
  * 
  */
-package io.github.idelvane.managecustomers.service;
+package io.github.idelvane.customermanagement.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -10,8 +10,8 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import io.github.idelvane.managecustomers.exceptions.CustomerNotFoundException;
-import io.github.idelvane.managecustomers.model.Customer;
+import io.github.idelvane.customermanagement.exceptions.CustomerNotFoundException;
+import io.github.idelvane.customermanagement.model.Customer;
 
 /**
  * Interface de serviço para manipulação dos objetos clientes

@@ -1,4 +1,4 @@
-package io.github.idelvane.managecustomers.dto;
+package io.github.idelvane.customermanagement.dto;
 
 import java.time.LocalDateTime;
 

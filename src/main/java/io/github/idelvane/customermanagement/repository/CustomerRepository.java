@@ -1,4 +1,4 @@
-package io.github.idelvane.managecustomers.repository;
+package io.github.idelvane.customermanagement.repository;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import io.github.idelvane.managecustomers.model.Customer;
+import io.github.idelvane.customermanagement.model.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long>{

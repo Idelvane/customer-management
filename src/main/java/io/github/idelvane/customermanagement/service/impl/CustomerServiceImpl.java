@@ -1,4 +1,4 @@
-package io.github.idelvane.managecustomers.service.impl;
+package io.github.idelvane.customermanagement.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -7,17 +7,19 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
-import io.github.idelvane.managecustomers.exceptions.CustomerNotFoundException;
-import io.github.idelvane.managecustomers.model.Customer;
-import io.github.idelvane.managecustomers.repository.CustomerRepository;
-import io.github.idelvane.managecustomers.service.CustomerService;
+import io.github.idelvane.customermanagement.exceptions.CustomerNotFoundException;
+import io.github.idelvane.customermanagement.model.Customer;
+import io.github.idelvane.customermanagement.repository.CustomerRepository;
+import io.github.idelvane.customermanagement.service.CustomerService;
 
 /**
  * Implementação dos métodos de {@link CustomerService}
  * @author idelvane
  *
  */
+@Service
 public class CustomerServiceImpl implements CustomerService{
 
 	CustomerRepository customerRepository;
@@ -30,6 +32,7 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	@Override
 	public Customer save(Customer customer) {
+		customer.setUpdatedAt(LocalDateTime.now());
 		return customerRepository.save(customer);
 	}
 
