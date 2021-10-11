@@ -37,6 +37,14 @@ public interface CustomerRepository extends JpaRepository<Customer, Long>{
 	 */
 	Optional<Customer> findByDocument(String document);
 	
+	/**
+	 * Retorna um cliente pelo email
+	 * 
+	 * 
+	 * @return 
+	 */
+	Optional<Customer> findByEmail(String email);
+	
 	
 	/**
 	 * Retorna um cliente pelo nome

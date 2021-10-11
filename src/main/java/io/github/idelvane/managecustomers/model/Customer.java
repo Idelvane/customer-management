@@ -52,6 +52,13 @@ public class Customer implements Serializable{
 	@NotBlank
 	private String document;
 	
+	@NotNull
+	@NotBlank
+	private String email;
+	
+	@NotNull
+	private String phone;
+	
 	@Column(name = "birth_date")
 	private LocalDateTime birthDate;
 	

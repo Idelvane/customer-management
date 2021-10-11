@@ -69,4 +69,10 @@ public class CustomerServiceImpl implements CustomerService{
 		return customerRepository.findAllByCreatedAtGreaterThanEqualAndCreatedAtLessThanEqual(startDate, endDate, pageable);
 	}
 
+
+	@Override
+	public Optional<Customer> findByEmail(String email) {
+		return customerRepository.findByEmail(email);
+	}
+
 }

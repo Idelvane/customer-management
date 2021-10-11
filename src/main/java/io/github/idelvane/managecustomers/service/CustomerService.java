@@ -66,6 +66,13 @@ public interface CustomerService {
 	Optional<Customer> findByBirthDate(LocalDateTime birthDate);
 	
 	/**
+	 * busca um cliente pelo e-mail
+	 * @param name
+	 * @return
+	 */
+	Optional<Customer> findByEmail(String email);
+	
+	/**
 	 * Busca todos os clientes cadastrados
 	 * @param name
 	 * @return
