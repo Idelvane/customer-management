@@ -13,6 +13,11 @@ import io.github.idelvane.managecustomers.model.Customer;
 import io.github.idelvane.managecustomers.repository.CustomerRepository;
 import io.github.idelvane.managecustomers.service.CustomerService;
 
+/**
+ * Implementação dos métodos de {@link CustomerService}
+ * @author idelvane
+ *
+ */
 public class CustomerServiceImpl implements CustomerService{
 
 	CustomerRepository customerRepository;
