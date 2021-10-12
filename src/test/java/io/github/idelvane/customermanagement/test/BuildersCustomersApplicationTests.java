@@ -1,4 +1,4 @@
-package io.github.managecustomers;
+package io.github.idelvane.customermanagement.test;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

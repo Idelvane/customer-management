@@ -10,9 +10,9 @@
 	</parent>
 	
 	<groupId>io.github.idelvane</groupId>
-	<artifactId>builders-customers</artifactId>
+	<artifactId>customer-management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>builders-customers</name>
+	<name>customer-management</name>
 	<description>Aplicação com intuito de manipulação de dados de um cliente</description>
 	
 	<properties>
