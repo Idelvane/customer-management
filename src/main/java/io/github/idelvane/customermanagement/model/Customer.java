@@ -14,6 +14,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.modelmapper.ModelMapper;
+
+import io.github.idelvane.customermanagement.dto.CustomerDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,7 +35,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "travel")
+@Table(name = "customer")
 public class Customer implements Serializable{
 
 	/**
@@ -41,7 +44,7 @@ public class Customer implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotNull
@@ -76,5 +79,13 @@ public class Customer implements Serializable{
 		final LocalDate now = LocalDate.now();
 	    final Period period = Period.between(this.birthDate.toLocalDate(), now);
 	    return period.getYears();
+	}
+
+	/**
+	 * Converte um Customer em CustomerDTO
+	 * @return
+	 */
+	public CustomerDTO convertEntityToDTO() {
+		return new ModelMapper().map(this, CustomerDTO.class);
 	}
 }
