@@ -10,6 +10,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import io.github.idelvane.customermanagement.dto.CustomerDTO;
 import io.github.idelvane.customermanagement.exceptions.CustomerNotFoundException;
 import io.github.idelvane.customermanagement.model.Customer;
 
@@ -61,7 +62,7 @@ public interface CustomerService {
 	/**
 	 * busca um cliente pela data de nascimento
 	 * @param name
-	 * @return
+	 * @returnTravelDTO
 	 */
 	Optional<Customer> findByBirthDate(LocalDateTime birthDate);
 	
@@ -89,5 +90,13 @@ public interface CustomerService {
 	 * @return
 	 */
 	Page<Customer> findBetweenCreatedAt(LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
+	
+	/**
+	 * 
+	 * @param fields
+	 * @param dto
+	 * @return
+	 */
+	CustomerDTO getPartializeJsonResponse(String fields, CustomerDTO dto);
 	
 }

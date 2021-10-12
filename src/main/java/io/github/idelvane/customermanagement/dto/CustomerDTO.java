@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotNull;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.hateoas.RepresentationModel;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -13,6 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
+import io.github.idelvane.customermanagement.model.Customer;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -52,5 +54,13 @@ public class CustomerDTO extends RepresentationModel<CustomerDTO>{
 	private LocalDateTime createdAt;
 	
 	private LocalDateTime updatedAt;
+
+	/**
+	 * método responsável pela conversão do DTO para entity
+	 * @return
+	 */
+	public Customer convertDTOToEntity() {
+		return new ModelMapper().map(this, Customer.class);
+	}
 
 }

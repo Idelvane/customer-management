@@ -18,11 +18,12 @@ A aplicação tem o intuito de manipulação de dados de um cliente. Para isso �
 
 Os principais endpoints da API são:
 
-* Criar um clinte: POST /customer-management/v1/customers
+* Criar um cliente: POST /customer-management/v1/customers
 * Atualizar um cliente: PUT /customer-management/v1/customers
 * Deletar um cliente (pelo id): DELETE /customer-management/v1/customers/1
 * Encontrar um cliente pelo ID: GET /customer-management/v1/customers/1
 * Filtrar cliente por nome: GET /customer-management/v1/customers/byName/{name}
-* Filtrar cliente por documento: GET /customer-management/v1/customers/byDocument/{name}
+* Filtrar cliente por documento: GET /customer-management/v1/customers/byDocument/{document}
+* Filtrar cliente pelo e-amil: GET /customer-management/v1/customers/byEmail/{email}
 * Filtrar cliente por data de nascimento: GET /customer-management/v1/customers/byBirthDate/{birthDate}
 * Buscar clientes pela data de cadastro (ordenados e paginados): GET /customer-management/v1/customers?startDate=2021-10-01&endDate=2021-10-15&page=3&size=5&sort=DESC
