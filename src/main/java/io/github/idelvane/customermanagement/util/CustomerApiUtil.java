@@ -59,7 +59,7 @@ public class CustomerApiUtil {
 	}
 	
 	/**
-	 * Converte uma String e, LocalDateTime.
+	 * Converte uma String em LocalDateTime.
 	 * 
 	 * @param dateAsString
 	 * 

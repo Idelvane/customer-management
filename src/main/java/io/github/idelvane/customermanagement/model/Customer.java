@@ -35,7 +35,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "travel")
+@Table(name = "customer")
 public class Customer implements Serializable{
 
 	/**
