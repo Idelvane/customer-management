@@ -94,6 +94,20 @@ public class CustomerControllerTest {
 		.andExpect(jsonPath("$.data.updatedAt").value(UPDATED_AT));
 	}
 	
+	@Test
+	@Order(2)
+	public void testSaveInvalidCustomer() throws Exception {
+		
+		BDDMockito.given(customerService.save(Mockito.any(Customer.class))).willReturn(getMockCustomer());
+		
+		mockMvc.perform(MockMvcRequestBuilders.post(URL).content(getPayloadDTO(ID, NAME, null, EMAIL, PHONE, CustomerApiUtil.getLocalDateTimeFromString(BIRTH_DATE.concat("Z")), 
+				CustomerApiUtil.getLocalDateTimeFromString(CREATED_AT.concat("Z")), CustomerApiUtil.getLocalDateTimeFromString(UPDATED_AT.concat("Z"))))
+				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+				.headers(headers))
+		.andExpect(status().isBadRequest())
+		.andExpect(jsonPath("$.errors.details").value("O documento não pode ficar em branco"));
+	}
+	
 	private Customer getMockCustomer() throws ParseException {
 		
 		Customer customer = new Customer(ID, NAME, DOCUMENT, EMAIL, PHONE, CustomerApiUtil.getLocalDateTimeFromString(BIRTH_DATE.concat("Z")), 
