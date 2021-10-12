@@ -9,11 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ContainerNode;
-import com.zero_x_baadf00d.partialize.Partialize;
-
-import io.github.idelvane.customermanagement.dto.CustomerDTO;
 import io.github.idelvane.customermanagement.exceptions.CustomerNotFoundException;
 import io.github.idelvane.customermanagement.model.Customer;
 import io.github.idelvane.customermanagement.repository.CustomerRepository;
@@ -80,14 +75,6 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public Optional<Customer> findByEmail(String email) {
 		return customerRepository.findByEmail(email);
-	}
-
-
-	@Override
-	public CustomerDTO getPartializeJsonResponse(String fields, CustomerDTO dto) {
-		final Partialize partialize = new Partialize();
-		final ContainerNode<?> node = partialize.buildPartialObject(fields, CustomerDTO.class, dto);
-		return new ObjectMapper().convertValue(node, CustomerDTO.class);
 	}
 
 }

@@ -177,17 +177,12 @@ public class CustomerController {
 	@GetMapping(value = "/{id}")
 	@ApiOperation(value = "Rota utilizada para encontrar um cliente a partir do seu ID")
 	public ResponseEntity<Response<CustomerDTO>> findById(@RequestHeader(value=CustomerApiUtil.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, defaultValue="${api.version}") 
-		String apiVersion, @RequestHeader(value=CustomerApiUtil.HEADER_API_KEY, defaultValue="${api.key}") String apiKey, @PathVariable("id") Long customerId,
-		@RequestParam(required = false) String fields) throws CustomerNotFoundException {
+		String apiVersion, @RequestHeader(value=CustomerApiUtil.HEADER_API_KEY, defaultValue="${api.key}") String apiKey, @PathVariable("id") Long customerId) throws CustomerNotFoundException {
 		
 		Response<CustomerDTO> response = new Response<>();
 		Customer customer = customerService.findById(customerId);
 		
 		CustomerDTO dto = customer.convertEntityToDTO();
-		
-		if(fields != null) {
-			dto = customerService.getPartializeJsonResponse(fields, dto);
-		}
 		
 		createSelfLink(customer, dto);
 		response.setData(dto);
@@ -488,7 +483,7 @@ public class CustomerController {
 	 */
 	private void createSelfLinkInCollections(String apiVersion, String apiKey, final CustomerDTO customerDTO) 
 			throws CustomerNotFoundException {
-		Link selfLink = linkTo(methodOn(CustomerController.class).findById(apiVersion, apiKey, customerDTO.getId(), null))
+		Link selfLink = linkTo(methodOn(CustomerController.class).findById(apiVersion, apiKey, customerDTO.getId()))
 				.withSelfRel().expand();
 		customerDTO.add(selfLink);
 	}
