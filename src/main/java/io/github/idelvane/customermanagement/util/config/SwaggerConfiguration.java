@@ -23,14 +23,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfiguration {
 	
-	@Value("${release.version}")
-	private String releaseVersion;
-	
 	@Value("${api.version}")
 	private String apiVersion;
 	
 	/**
-	 * Method that configure all the endpoint's mapped in the documentation.
+	 * Configuração dos endpoints
 	 *  
 	 * @return <code>Docket</code> object
 	 */
@@ -43,13 +40,13 @@ public class SwaggerConfiguration {
 	}
 
 	/**
-	 * Method that configure the informations about the API. 
+	 * Informações da API 
 	 * 
 	 * @return <code>ApiInfo</code> object
 	 */
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("Customer management")
-				.description("API do projeto Customer Management").version(releaseVersion.concat("_").concat(apiVersion))
+				.description("API do projeto Customer Management").version(apiVersion)
 				.build();
 	}
 

@@ -12,6 +12,8 @@
 	<groupId>io.github.idelvane</groupId>
 	<artifactId>customer-management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
 	<name>customer-management</name>
 	<description>Aplicação com intuito de manipulação de dados de um cliente</description>
 	
@@ -19,7 +21,6 @@
 		<java.version>11</java.version>
 		<modelmapper.version>2.3.9</modelmapper.version>
 		<swagger.version>3.0.0</swagger.version>
-		<partialize.version>release~20.05</partialize.version>
 	</properties>
 	
 	<dependencies>

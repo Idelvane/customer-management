@@ -27,3 +27,40 @@ Os principais endpoints da API são:
 * Filtrar cliente pelo e-amil: GET /customer-management/v1/customers/byEmail/{email}
 * Filtrar cliente por data de nascimento: GET /customer-management/v1/customers/byBirthDate/{birthDate}
 * Buscar clientes pela data de cadastro (ordenados e paginados): GET /customer-management/v1/customers?startDate=2021-10-01&endDate=2021-10-15&page=3&size=5&sort=DESC
+
+# Tecnologias utilizadas
+
+* **Java 11 (Java Development Kit - JDK: 11.0.9)**
+* **Spring Boot 2.3.7**
+* **Maven**
+* **JUnit 5**
+* **PostgreSQL 13**
+* **Swagger 3.0.0**
+* **Model Mapper 2.3.9**
+* **Heroku**
+
+
+# Como Rodar?
+
+* Para executar o projeto é necessário que se tenha o docker instalado.
+* Nessa primeira versão é necessário fazer o build do projeto e copiar o jar gerado na pasta target:
+```bash
+	cp target/customer-management-0.0.1-SNAPSHOT.jar src/main/docker
+```
+* Feito isso, é necessário rodar a aplicação: docker-compose up;
+* Para acesso da documentação com Swagger: http://localhost:8080/swagger-ui/index.html
+
+
+### Test
+
+* Para os testes unitários
+
+```bash
+mvn test
+```
+
+* Para testes de integração
+
+```bash
+mvn integration-test
+```
