@@ -67,25 +67,25 @@ public class CustomerManagementIntegrationTest {
     }
     
     
-    @Test
-    @Order(2)
-    public void testFindAllBetweenDates() throws ParseException {
-    	
-    	final HttpHeaders headers = new HttpHeaders();
-        headers.set("X-api-key", "T3ST3-12356709");
-        
-        //Create a new HttpEntity
-        final HttpEntity<String> entity = new HttpEntity<>(headers);
-        
-        String startDate = LocalDate.of(2021, 10, 10).toString();
-		String endDate = LocalDate.of(2021, 10, 20).toString();
-
-		ResponseEntity<String> responseEntity = this.restTemplate
-        		.exchange("http://localhost:" + port + "/customer-management/v1/customers?startDate=" + startDate 
-        				+ "&endDate=" + endDate + "&page=" + 1 + "&size=" + 2 + "&order=ASC", HttpMethod.GET, 
-        				entity, String.class);
-    	
-        assertEquals(200, responseEntity.getStatusCodeValue());
-    }
+//    @Test
+//    @Order(2)
+//    public void testFindAllBetweenCreatedAt() throws ParseException {
+//    	
+//    	final HttpHeaders headers = new HttpHeaders();
+//        headers.set("X-api-key", "T3ST3-12356709");
+//        
+//        //Create a new HttpEntity
+//        final HttpEntity<String> entity = new HttpEntity<>(headers);
+//        
+//        String startDate = LocalDate.of(2021, 10, 10).toString();
+//		String endDate = LocalDate.of(2021, 10, 20).toString();
+//
+//		ResponseEntity<String> responseEntity = this.restTemplate
+//        		.exchange("http://localhost:" + port + "/customer-management/v1/customers?startDate=" + startDate 
+//        				+ "&endDate=" + endDate + "&page=" + 1 + "&size=" + 2 + "&order=ASC", HttpMethod.GET, 
+//        				entity, String.class);
+//    	
+//        assertEquals(200, responseEntity.getStatusCodeValue());
+//    }
 	    
 }

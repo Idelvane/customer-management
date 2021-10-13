@@ -21,7 +21,6 @@
 		<java.version>11</java.version>
 		<modelmapper.version>2.3.9</modelmapper.version>
 		<swagger.version>3.0.0</swagger.version>
-		<partialize.version>release~20.05</partialize.version>
 	</properties>
 	
 	<dependencies>
