@@ -3,7 +3,6 @@ package io.github.idelvane.customermanagement.it;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.text.ParseException;
-import java.time.LocalDate;
 
 import org.junit.Test;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;

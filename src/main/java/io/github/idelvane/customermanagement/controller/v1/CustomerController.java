@@ -256,13 +256,13 @@ public class CustomerController {
 	 * @throws CustomerNotFoundException
 	 */
 	@GetMapping(value = "/byName/{customerName}")
-	@ApiOperation(value = "Rota para encontrar um cliente pelo nome")
+	@ApiOperation(value = "Rota para encontrar clientes pelo nome")
 	public ResponseEntity<Response<List<CustomerDTO>>> findByName(@RequestHeader(value=CustomerApiUtil.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, defaultValue="${api.version}") 
 		String apiVersion, @RequestHeader(value=CustomerApiUtil.HEADER_API_KEY, defaultValue="${api.key}") String apiKey, 
 		@PathVariable("customerName") String customerName) throws CustomerNotFoundException {
 		
 		Response<List<CustomerDTO>> response = new Response<>();
-		Optional<Customer> customers = customerService.findByName(customerName);
+		List<Customer> customers = customerService.findByName(customerName);
 		
 		if (customers.isEmpty()) {
 			throw new CustomerNotFoundException("Não foram encontrados clientes com o nome: " + customerName);
@@ -290,7 +290,7 @@ public class CustomerController {
 	
 	
 	/**
-	 * Método que busca todos cos cliente por um determinado nome.
+	 * Método que busca todos os cliente por um determinado email.
 	 * 
 	 * 
 	 * @param apiVersion - API version atual
@@ -373,20 +373,20 @@ public class CustomerController {
 		@PathVariable("customerName") String customerDocument) throws CustomerNotFoundException {
 		
 		Response<List<CustomerDTO>> response = new Response<>();
-		Optional<Customer> customers = customerService.findByDocument(customerDocument);
+		Optional<Customer> customer = customerService.findByDocument(customerDocument);
 		
-		if (customers.isEmpty()) {
-			throw new CustomerNotFoundException("Não foram encontrados clientes com o documento: " + customerDocument);
+		if (customer.isEmpty()) {
+			throw new CustomerNotFoundException("Não foi encontrado cliente com o documento: " + customerDocument);
 		}
 		
 		List<CustomerDTO> customersDTO = new ArrayList<>();
-		customers.stream().forEach(t -> customersDTO.add(t.convertEntityToDTO()));
+		customer.stream().forEach(t -> customersDTO.add(t.convertEntityToDTO()));
 		
 		customersDTO.stream().forEach(dto -> {
 			try {
 				createSelfLinkInCollections(apiVersion, apiKey, dto);
 			} catch (CustomerNotFoundException e) {
-				log.error("Não foram encontrados clientes com o documento  {}", customerDocument);
+				log.error("Não foram encontrado cliente com o documento  {}", customerDocument);
 			}
 		});
 		
