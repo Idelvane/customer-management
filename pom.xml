@@ -12,6 +12,8 @@
 	<groupId>io.github.idelvane</groupId>
 	<artifactId>customer-management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
 	<name>customer-management</name>
 	<description>Aplicação com intuito de manipulação de dados de um cliente</description>
 	

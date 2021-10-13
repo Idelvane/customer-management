@@ -3,13 +3,15 @@ package io.github.idelvane.customermanagement.it;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.text.ParseException;
+import java.time.LocalDate;
 
 import org.junit.Test;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,25 +24,19 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import io.github.idelvane.customermanagement.dto.CustomerDTO;
 import io.github.idelvane.customermanagement.util.CustomerApiUtil;
 
 @ActiveProfiles("test")
+@RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 @TestInstance(Lifecycle.PER_CLASS)
 @TestMethodOrder(OrderAnnotation.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class CustomerManagementIntegrationTest {
 
-	static final Long ID = 1L;
-	static final String NAME = "Antonio";
-	static final String DOCUMENT = "001.001.001-11";
-	static final String EMAIL = "email.de.teste@teste.com";
-	static final String PHONE = "(86) 99999-0000";
-	static final String BIRTH_DATE = "1986-05-21T07:40:15.100";
-	static final String CREATED_AT = "2021-10-12T09:16:15.100";
-	static final String UPDATED_AT = "2021-10-12T09:16:16.100";
 	
 	@LocalServerPort
 	private int port;
@@ -50,13 +46,13 @@ public class CustomerManagementIntegrationTest {
     
     @Test
     @Order(1)
-    public void testCreateCustomer() throws ParseException {
+    public void testCreateCustomer1() throws ParseException {
     	
-        CustomerDTO customerDTO = CustomerDTO.builder().name(NAME).document(DOCUMENT).email(EMAIL)
-        		.phone(PHONE)
-				.birthDate(CustomerApiUtil.getLocalDateTimeFromString(BIRTH_DATE.concat("Z")))
-				.createdAt(CustomerApiUtil.getLocalDateTimeFromString(CREATED_AT.concat("Z")))
-				.updatedAt(CustomerApiUtil.getLocalDateTimeFromString(UPDATED_AT.concat("Z"))).build(); 
+        CustomerDTO customerDTO = CustomerDTO.builder().name("Antonio").document("001.001.001-11").email("email.de.teste@teste.com")
+        		.phone("(86) 99999-0000")
+				.birthDate(CustomerApiUtil.getLocalDateTimeFromString("1986-05-21T07:40:15.100".concat("Z")))
+				.createdAt(CustomerApiUtil.getLocalDateTimeFromString("2021-10-12T09:16:15.100".concat("Z")))
+				.updatedAt(CustomerApiUtil.getLocalDateTimeFromString("2021-10-12T09:16:16.100".concat("Z"))).build(); 
         
         final HttpHeaders headers = new HttpHeaders();
         headers.set("X-api-key", "T3ST3-12356709");
@@ -68,6 +64,28 @@ public class CustomerManagementIntegrationTest {
         		+ port + "/customer-management/v1/customers", HttpMethod.POST, entity, new ParameterizedTypeReference<CustomerDTO>(){});
         
         assertEquals(201, responseEntity.getStatusCodeValue());
+    }
+    
+    
+    @Test
+    @Order(2)
+    public void testFindAllBetweenDates() throws ParseException {
+    	
+    	final HttpHeaders headers = new HttpHeaders();
+        headers.set("X-api-key", "T3ST3-12356709");
+        
+        //Create a new HttpEntity
+        final HttpEntity<String> entity = new HttpEntity<>(headers);
+        
+        String startDate = LocalDate.of(2021, 10, 10).toString();
+		String endDate = LocalDate.of(2021, 10, 20).toString();
+
+		ResponseEntity<String> responseEntity = this.restTemplate
+        		.exchange("http://localhost:" + port + "/customer-management/v1/customers?startDate=" + startDate 
+        				+ "&endDate=" + endDate + "&page=" + 1 + "&size=" + 2 + "&order=ASC", HttpMethod.GET, 
+        				entity, String.class);
+    	
+        assertEquals(200, responseEntity.getStatusCodeValue());
     }
 	    
 }
