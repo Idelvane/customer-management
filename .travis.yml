@@ -4,7 +4,8 @@ sudo: false
 jdk:
   - oraclejdk11
 before_install:
-- export TZ=Brazil/East
+  - export TZ=Brazil/East
+  - chmod +x mvnw
 git:
   depth: 2 #clone repository to a maximum depth of 2 commits
 
