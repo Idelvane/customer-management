@@ -50,6 +50,23 @@ Os principais endpoints da API são:
 * Feito isso, é necessário rodar a aplicação: docker-compose up;
 * Para acesso da documentação com Swagger: http://localhost:8080/swagger-ui/index.html
 
+Outra alternativa é rodar o projeto a partir do jar:
+```bash
+java -jar customer-management-0.0.1-SNAPSHOT.jar
+```
+Para isso é necessário que se tenha o java 11 instalado, assim como o postgres. Deve ser adicionado o usuário pgteste:
+```bash
+sudo -u postgres createuser -s -i -d -r -l -w pgteste
+```
+```bash
+sudo -u postgres psql -c "ALTER ROLE pgteste WITH PASSWORD 'pgteste';"
+```
+
+Depois disso deve ser criado o banco:
+
+```bash
+create database customer;
+```
 
 ### Test
 

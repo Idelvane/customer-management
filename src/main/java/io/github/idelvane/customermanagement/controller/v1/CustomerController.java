@@ -427,7 +427,7 @@ public class CustomerController {
 	public ResponseEntity<Response<List<CustomerDTO>>> findAllBetweenCreatedAt(@RequestHeader(value=CustomerApiUtil.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, defaultValue="${api.version}") 
 		String apiVersion, @RequestHeader(value=CustomerApiUtil.HEADER_API_KEY, defaultValue="${api.key}") String apiKey, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") 
 	    LocalDate startDate, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate, 
-	    @PageableDefault(page = 1, size = 10, sort = {"id"}) Pageable pageable) throws CustomerNotFoundException {
+	    @PageableDefault(page = 1, size = 10) Pageable pageable) throws CustomerNotFoundException {
 		
 		Response<List<CustomerDTO>> response = new Response<>();
 		

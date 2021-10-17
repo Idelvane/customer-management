@@ -1,6 +1,8 @@
 package io.github.idelvane.customermanagement.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 
 import javax.validation.constraints.NotNull;
 
@@ -68,4 +70,14 @@ public class CustomerDTO extends RepresentationModel<CustomerDTO>{
 		return new ModelMapper().map(this, Customer.class);
 	}
 
+	/**
+	 * método responsável por retornar a idade do cliente
+	 * @return
+	 */
+	public int getAge() {
+		final LocalDate now = LocalDate.now();
+	    final Period period = Period.between(this.birthDate.toLocalDate(), now);
+	    return period.getYears();
+	}
+	
 }
