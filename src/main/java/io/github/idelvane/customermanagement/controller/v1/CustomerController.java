@@ -139,12 +139,12 @@ public class CustomerController {
 			return ResponseEntity.badRequest().body(response);
 		}
 		
-		
 		Customer customer = customerService.findById(dto.getId());
 		
 		if (customer == null) {
-			throw new CustomerNotFoundException("Cliente com o ID :" + dto.getId() +" não encontrado");
+			throw new CustomerNotFoundException("Cliente com o ID " + dto.getId() +" não encontrado");
 		}
+		customer = dto.convertDTOToEntity();
 		
 		Customer customerToUpdate = customerService.save(customer);
 		

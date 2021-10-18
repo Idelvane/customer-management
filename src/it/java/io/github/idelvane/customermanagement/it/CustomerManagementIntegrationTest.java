@@ -59,7 +59,6 @@ public class CustomerManagementIntegrationTest {
 		ResponseEntity<CustomerDTO> responseEntity = this.restTemplate.exchange("http://localhost:" 
         		+ port + "/customer-management/v1/customers", HttpMethod.POST, entity, new ParameterizedTypeReference<CustomerDTO>(){});
         
-		System.out.println("Teste 1");
         assertEquals(201, responseEntity.getStatusCodeValue());
     }	
     
@@ -81,7 +80,6 @@ public class CustomerManagementIntegrationTest {
 		ResponseEntity<CustomerDTO> responseEntity = this.restTemplate.exchange("http://localhost:" 
         		+ port + "/customer-management/v1/customers", HttpMethod.POST, entity, new ParameterizedTypeReference<CustomerDTO>(){});
         
-		System.out.println("Teste 2");
         assertEquals(201, responseEntity.getStatusCodeValue());
     }
     
@@ -104,7 +102,6 @@ public class CustomerManagementIntegrationTest {
         				entity, String.class);
     	
 			
-		System.out.println("Teste 3");
         assertEquals(200, responseEntity.getStatusCodeValue());
     }
 	    
