@@ -1,6 +1,7 @@
 package io.github.idelvane.customermanagement.repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -27,7 +28,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long>{
 	 * 
 	 * @return 
 	 */
-	Optional<Customer> findByName(String name);
+	List<Customer> findByName(String name);
 	
 	/**
 	 * Retorna um cliente pelo documento

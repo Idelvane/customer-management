@@ -48,7 +48,7 @@ public interface CustomerService {
 	 * @param name
 	 * @return
 	 */
-	Optional<Customer> findByName(String name);
+	List<Customer> findByName(String name);
 	
 	/**
 	 * busca um cliente pelo documento

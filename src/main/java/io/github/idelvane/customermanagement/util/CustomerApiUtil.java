@@ -26,15 +26,6 @@ public class CustomerApiUtil {
 	 */
 	public static final String HEADER_API_KEY = "X-api-key";
 	
-	/**
-	 * Representa o Limit Remaining nos requests/responses header
-	 */
-	public static final String HEADER_LIMIT_REMAINING = "X-Rate-Limit-Remaining";
-    
-	/**
-	 * Representa API Rate Limit Retry After Seconds no requests/responses header
-	 */
-	public static final String HEADER_RETRY_AFTER = "X-Rate-Limit-Retry-After-Seconds";
 	
 	private CustomerApiUtil() {}
 	
@@ -61,15 +52,15 @@ public class CustomerApiUtil {
 	/**
 	 * Converte uma String em LocalDateTime.
 	 * 
-	 * @param dateAsString
+	 * @param dateString
 	 * 
 	 * @return <code>LocalDateTime</code> object
 	 * @throws ParseException
 	 */
-	public static LocalDateTime getLocalDateTimeFromString(String dateAsString) throws ParseException{
+	public static LocalDateTime convertStringToLocalDateTime(String dateString) throws ParseException{
 		SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        Date dateISO8601 = inputFormat.parse(dateAsString);
-        return dateISO8601.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        Date date = inputFormat.parse(dateString);
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 	}
 	
 	/**

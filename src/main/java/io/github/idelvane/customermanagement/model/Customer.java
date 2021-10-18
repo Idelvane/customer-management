@@ -1,11 +1,8 @@
 package io.github.idelvane.customermanagement.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Period;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -62,25 +59,12 @@ public class Customer implements Serializable{
 	@NotNull
 	private String phone;
 	
-	@Column(name = "birth_date")
 	private LocalDateTime birthDate;
 	
-	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 	
-	@Column(name = "updated_at")
 	private LocalDateTime updatedAt;
 	
-	/**
-	 * método responsável por retornar a idade do cliente
-	 * @return
-	 */
-	public int getAge() {
-		final LocalDate now = LocalDate.now();
-	    final Period period = Period.between(this.birthDate.toLocalDate(), now);
-	    return period.getYears();
-	}
-
 	/**
 	 * Converte um Customer em CustomerDTO
 	 * @return

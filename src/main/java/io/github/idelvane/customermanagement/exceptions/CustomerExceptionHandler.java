@@ -31,7 +31,7 @@ public class CustomerExceptionHandler<T> {
 	 * @return ResponseEntity<Response<T>>
 	 */
 	@ExceptionHandler(value = { CustomerNotFoundException.class })
-    protected ResponseEntity<Response<T>> handleTravelNotFoundException(CustomerNotFoundException exception) {
+    protected ResponseEntity<Response<T>> handleCustomerNotFoundException(CustomerNotFoundException exception) {
 		
 		Response<T> response = new Response<>();
 		response.addErrorMsgToResponse(exception.getLocalizedMessage());

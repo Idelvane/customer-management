@@ -78,8 +78,8 @@ public class CustomerControllerTest {
 		
 		BDDMockito.given(customerService.save(Mockito.any(Customer.class))).willReturn(getMockCustomer());
 		
-		mockMvc.perform(MockMvcRequestBuilders.post(URL).content(getPayloadDTO(ID, NAME, DOCUMENT, EMAIL, PHONE, CustomerApiUtil.getLocalDateTimeFromString(BIRTH_DATE.concat("Z")), 
-				CustomerApiUtil.getLocalDateTimeFromString(CREATED_AT.concat("Z")), CustomerApiUtil.getLocalDateTimeFromString(UPDATED_AT.concat("Z"))))
+		mockMvc.perform(MockMvcRequestBuilders.post(URL).content(getPayloadDTO(ID, NAME, DOCUMENT, EMAIL, PHONE, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
+				CustomerApiUtil.convertStringToLocalDateTime(CREATED_AT.concat("Z")), CustomerApiUtil.convertStringToLocalDateTime(UPDATED_AT.concat("Z"))))
 			.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
 			.headers(headers))
 		.andDo(MockMvcResultHandlers.print())
@@ -100,8 +100,8 @@ public class CustomerControllerTest {
 		
 		BDDMockito.given(customerService.save(Mockito.any(Customer.class))).willReturn(getMockCustomer());
 		
-		mockMvc.perform(MockMvcRequestBuilders.post(URL).content(getPayloadDTO(ID, NAME, null, EMAIL, PHONE, CustomerApiUtil.getLocalDateTimeFromString(BIRTH_DATE.concat("Z")), 
-				CustomerApiUtil.getLocalDateTimeFromString(CREATED_AT.concat("Z")), CustomerApiUtil.getLocalDateTimeFromString(UPDATED_AT.concat("Z"))))
+		mockMvc.perform(MockMvcRequestBuilders.post(URL).content(getPayloadDTO(ID, NAME, null, EMAIL, PHONE, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
+				CustomerApiUtil.convertStringToLocalDateTime(CREATED_AT.concat("Z")), CustomerApiUtil.convertStringToLocalDateTime(UPDATED_AT.concat("Z"))))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
 				.headers(headers))
 		.andExpect(status().isBadRequest())
@@ -110,8 +110,8 @@ public class CustomerControllerTest {
 	
 	private Customer getMockCustomer() throws ParseException {
 		
-		Customer customer = new Customer(ID, NAME, DOCUMENT, EMAIL, PHONE, CustomerApiUtil.getLocalDateTimeFromString(BIRTH_DATE.concat("Z")), 
-				CustomerApiUtil.getLocalDateTimeFromString(CREATED_AT.concat("Z")), CustomerApiUtil.getLocalDateTimeFromString(UPDATED_AT.concat("Z")));
+		Customer customer = new Customer(ID, NAME, DOCUMENT, EMAIL, PHONE, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
+				CustomerApiUtil.convertStringToLocalDateTime(CREATED_AT.concat("Z")), CustomerApiUtil.convertStringToLocalDateTime(UPDATED_AT.concat("Z")));
 		return customer;
 	}
 	
