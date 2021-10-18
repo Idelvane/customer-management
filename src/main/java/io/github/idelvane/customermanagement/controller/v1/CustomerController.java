@@ -370,7 +370,7 @@ public class CustomerController {
 	@ApiOperation(value = "Rota para encontrar clientes pelo documento")
 	public ResponseEntity<Response<List<CustomerDTO>>> findByDocument(@RequestHeader(value=CustomerApiUtil.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, defaultValue="${api.version}") 
 		String apiVersion, @RequestHeader(value=CustomerApiUtil.HEADER_API_KEY, defaultValue="${api.key}") String apiKey, 
-		@PathVariable("customerName") String customerDocument) throws CustomerNotFoundException {
+		@PathVariable("customerDocument") String customerDocument) throws CustomerNotFoundException {
 		
 		Response<List<CustomerDTO>> response = new Response<>();
 		Optional<Customer> customer = customerService.findByDocument(customerDocument);

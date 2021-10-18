@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 import org.modelmapper.ModelMapper;
@@ -42,6 +43,7 @@ public class CustomerDTO extends RepresentationModel<CustomerDTO>{
 	private String document;
 	
 	@NotNull(message="O e-mail não pode ficar em branco")
+	@Email
 	private String email;
 	
 	
