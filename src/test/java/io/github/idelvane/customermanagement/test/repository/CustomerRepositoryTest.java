@@ -1,6 +1,5 @@
 package io.github.idelvane.customermanagement.test.repository;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -82,7 +81,7 @@ public class CustomerRepositoryTest {
 	}
 	
 	@Test
-	@Order(1)
+	@Order(2)
 	public void testSaveCustomer2() throws ParseException {
 		
 		Customer customerNumber2 = new Customer(null, "Antonio", "000.000.000-01", EMAIL, PHONE, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
@@ -97,7 +96,7 @@ public class CustomerRepositoryTest {
 	 * 
 	 */
 	@Test
-	@Order(2)
+	@Order(3)
 	public void testFindByName(){
 		
 		List<Customer> response = customerRepository.findByName("Antonio");
@@ -110,16 +109,16 @@ public class CustomerRepositoryTest {
 	 * 
 	 */
 	@Test
-	@Order(3)
+	@Order(4)
 	public void testFindAllByCreatedAt(){
 		
 		LocalDate startDate = LocalDate.of(2021, 10, 10);
-		LocalDate endDate = LocalDate.of(2021, 10, 12);
+		LocalDate endDate = LocalDate.of(2021, 10, 15);
 		
 		Page<Customer> response = customerRepository.findAllByCreatedAtGreaterThanEqualAndCreatedAtLessThanEqual(CustomerApiUtil.convertLocalDateToLocalDateTime(startDate), 
 				CustomerApiUtil.convertLocalDateToLocalDateTime(endDate), null);
 		
-		assertEquals(response.stream().count(), 2);
+		assertFalse(response.isEmpty());
 	}
 	
 	/**
