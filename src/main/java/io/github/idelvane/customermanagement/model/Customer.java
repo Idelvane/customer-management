@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +16,8 @@ import javax.validation.constraints.NotNull;
 import org.modelmapper.ModelMapper;
 
 import io.github.idelvane.customermanagement.dto.CustomerDTO;
+import io.github.idelvane.customermanagement.enums.PersonTypeEnum;
+import io.github.idelvane.customermanagement.util.CustomerApiUtil;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -59,6 +63,9 @@ public class Customer implements Serializable{
 	@NotNull
 	private String phone;
 	
+	@Enumerated(EnumType.STRING)
+	private PersonTypeEnum personType;
+	
 	private LocalDateTime birthDate;
 	
 	private LocalDateTime createdAt;
@@ -71,5 +78,9 @@ public class Customer implements Serializable{
 	 */
 	public CustomerDTO convertEntityToDTO() {
 		return new ModelMapper().map(this, CustomerDTO.class);
+	}
+	
+	public int getAge() {
+		return CustomerApiUtil.calculateAge(birthDate);
 	}
 }

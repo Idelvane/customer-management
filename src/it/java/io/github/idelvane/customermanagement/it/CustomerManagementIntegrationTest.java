@@ -45,7 +45,7 @@ public class CustomerManagementIntegrationTest {
     @Order(1)
     public void testCreateCustomer1() throws ParseException {
     	
-        CustomerDTO customerDTO = CustomerDTO.builder().name("Antonio").document("001.001.001-11").email("email.de.teste@teste.com")
+        CustomerDTO customerDTO = CustomerDTO.builder().name("Antonio").document("00100100111").email("email.de.teste@teste.com")
         		.phone("(86) 99999-0000")
 				.birthDate(CustomerApiUtil.convertStringToLocalDateTime("1986-05-21T07:40:15.100Z"))
 				.createdAt(CustomerApiUtil.convertStringToLocalDateTime("2021-10-12T09:16:15.100Z"))
@@ -67,7 +67,7 @@ public class CustomerManagementIntegrationTest {
     @Order(2)
     public void testCreateCustomer2() throws ParseException {
     	
-        CustomerDTO customerDTO = CustomerDTO.builder().name("Maria").document("001.001.021-11").email("email.da.maria@teste.com")
+        CustomerDTO customerDTO = CustomerDTO.builder().name("Maria").document("00100102111").email("email.da.maria@teste.com")
         		.phone("(86) 99997-0001")
 				.birthDate(CustomerApiUtil.convertStringToLocalDateTime("1990-06-21T07:40:15.100Z"))
 				.createdAt(CustomerApiUtil.convertStringToLocalDateTime("2021-10-10T09:16:15.100Z"))

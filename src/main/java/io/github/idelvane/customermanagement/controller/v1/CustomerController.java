@@ -138,8 +138,14 @@ public class CustomerController {
 			result.getAllErrors().forEach(error -> response.addErrorMsgToResponse(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
 		}
-
-		Customer customer = dto.convertDTOToEntity();
+		
+		
+		Customer customer = customerService.findById(dto.getId());
+		
+		if (customer == null) {
+			throw new CustomerNotFoundException("Cliente com o ID :" + dto.getId() +" não encontrado");
+		}
+		
 		Customer customerToUpdate = customerService.save(customer);
 		
 		CustomerDTO itemDTO = customerToUpdate.convertEntityToDTO();
