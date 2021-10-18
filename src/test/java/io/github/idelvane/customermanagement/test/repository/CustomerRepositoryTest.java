@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -42,7 +43,7 @@ public class CustomerRepositoryTest {
 
 	static final Long ID = 1L;
 	static final String NAME = "Antonio";
-	static final String DOCUMENT = "00100100111";
+	static final String DOCUMENT = "02262272000";
 	static final String EMAIL = "email.de.teste@teste.com";
 	static final String PHONE = "(86) 99999-0000";
 	static final String BIRTH_DATE = "1986-05-21T07:40:15.100";
@@ -74,7 +75,7 @@ public class CustomerRepositoryTest {
 	@Order(1)
 	public void testSave() throws ParseException {
 		
-		Customer customerNew = new Customer(null, "José", "00000000001", EMAIL, PHONE, PersonTypeEnum.FISICA, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
+		Customer customerNew = new Customer(null, "José", "38171953034", EMAIL, PHONE, PersonTypeEnum.FISICA, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
 				LocalDateTime.of(2021, 10, 11, 13, 40), LocalDateTime.now());
 		
 		var response = customerRepository.save(customerNew);
@@ -85,7 +86,7 @@ public class CustomerRepositoryTest {
 	@Order(2)
 	public void testSaveCustomer2() throws ParseException {
 		
-		Customer customerNumber2 = new Customer(null, "Antonio", "00000000001", EMAIL, PHONE, PersonTypeEnum.FISICA, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
+		Customer customerNumber2 = new Customer(null, "Antonio", "04672632059", EMAIL, PHONE, PersonTypeEnum.FISICA, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
 				LocalDateTime.of(2021, 10, 13, 13, 40), LocalDateTime.now());
 		
 		var response = customerRepository.save(customerNumber2);
@@ -104,13 +105,21 @@ public class CustomerRepositoryTest {
 		assertFalse(response.isEmpty());
 	}
 	
+	@Test
+	@Order(4)
+	public void testFindDocument(){
+		
+		Optional<Customer> response = customerRepository.findByDocument("04672632059");
+		assertFalse(response.isEmpty());
+	}
+	
 	
 	/**
 	 * Teste do método findAllByCreatedAtGreaterThanEqualAndCreatedAtLessThanEqual de {@link CustomerRepository}
 	 * 
 	 */
 	@Test
-	@Order(4)
+	@Order(5)
 	public void testFindAllByCreatedAt(){
 		
 		LocalDate startDate = LocalDate.of(2021, 10, 10);

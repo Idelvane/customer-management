@@ -50,7 +50,7 @@ public class CustomerControllerTest {
 	
 	static final Long ID = 1L;
 	static final String NAME = "Antonio";
-	static final String DOCUMENT = "00100100111";
+	static final String DOCUMENT = "40518864090";
 	static final String EMAIL = "email.de.teste@teste.com";
 	static final String PHONE = "(86) 99999-0000";
 	static final String BIRTH_DATE = "1986-05-21T07:40:15.100";

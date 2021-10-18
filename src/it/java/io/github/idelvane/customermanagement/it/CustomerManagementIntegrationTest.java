@@ -25,6 +25,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 
 import io.github.idelvane.customermanagement.dto.CustomerDTO;
+import io.github.idelvane.customermanagement.enums.PersonTypeEnum;
 import io.github.idelvane.customermanagement.util.CustomerApiUtil;
 
 @ActiveProfiles("test")
@@ -45,8 +46,9 @@ public class CustomerManagementIntegrationTest {
     @Order(1)
     public void testCreateCustomer1() throws ParseException {
     	
-        CustomerDTO customerDTO = CustomerDTO.builder().name("Antonio").document("00100100111").email("email.de.teste@teste.com")
-        		.phone("(86) 99999-0000")
+        CustomerDTO customerDTO = CustomerDTO.builder().name("Antonio").document("72398677060").email("email.de.teste@teste.com")
+        		.phone("(86) 99999-9999")
+        		.personType(PersonTypeEnum.FISICA)
 				.birthDate(CustomerApiUtil.convertStringToLocalDateTime("1986-05-21T07:40:15.100Z"))
 				.createdAt(CustomerApiUtil.convertStringToLocalDateTime("2021-10-12T09:16:15.100Z"))
 				.updatedAt(CustomerApiUtil.convertStringToLocalDateTime("2021-10-12T09:16:16.100Z")).build(); 
@@ -66,8 +68,9 @@ public class CustomerManagementIntegrationTest {
     @Order(2)
     public void testCreateCustomer2() throws ParseException {
     	
-        CustomerDTO customerDTO = CustomerDTO.builder().name("Maria").document("00100102111").email("email.da.maria@teste.com")
-        		.phone("(86) 99997-0001")
+        CustomerDTO customerDTO = CustomerDTO.builder().name("Maria").document("25612753020").email("email.da.maria@teste.com")
+        		.phone("(86) 99999-9992")
+        		.personType(PersonTypeEnum.FISICA)
 				.birthDate(CustomerApiUtil.convertStringToLocalDateTime("1990-06-21T07:40:15.100Z"))
 				.createdAt(CustomerApiUtil.convertStringToLocalDateTime("2021-10-10T09:16:15.100Z"))
 				.updatedAt(CustomerApiUtil.convertStringToLocalDateTime("2021-10-10T09:16:16.100Z")).build(); 

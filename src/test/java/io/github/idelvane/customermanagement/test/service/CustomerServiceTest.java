@@ -70,7 +70,7 @@ public class CustomerServiceTest {
 		Customer response = customerService.save(new Customer());
 		
 		assertNotNull(response);
-		assertEquals("00100000000", response.getDocument());
+		assertEquals("72398677060", response.getDocument());
 	}
 	
 	/**
@@ -84,7 +84,7 @@ public class CustomerServiceTest {
 		BDDMockito.given(customerRepository.findByDocument(Mockito.anyString()))
 			.willReturn(Optional.of(new Customer()));
 		
-		Optional<Customer> response = customerService.findByDocument("00100100100");
+		Optional<Customer> response = customerService.findByDocument("72398677060");
 		assertTrue(!response.isEmpty());
 	}
 	
@@ -114,7 +114,7 @@ public class CustomerServiceTest {
 	 */
 	private Customer getMockCustomer() throws ParseException {
 		
-		Customer customer = new Customer(1L, "José", "00100000000", "jose@deteste.com", "(86) 99985-9999", PersonTypeEnum.FISICA, 
+		Customer customer = new Customer(1L, "José", "72398677060", "jose@deteste.com", "(86) 99985-9999", PersonTypeEnum.FISICA, 
 				CustomerApiUtil.convertStringToLocalDateTime("1986-05-21T07:40:15.100".concat("Z")), 
 				LocalDateTime.now(), LocalDateTime.now());
 		return customer;
