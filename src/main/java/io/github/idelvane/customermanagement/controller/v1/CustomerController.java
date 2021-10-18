@@ -138,8 +138,14 @@ public class CustomerController {
 			result.getAllErrors().forEach(error -> response.addErrorMsgToResponse(error.getDefaultMessage()));
 			return ResponseEntity.badRequest().body(response);
 		}
-
-		Customer customer = dto.convertDTOToEntity();
+		
+		Customer customer = customerService.findById(dto.getId());
+		
+		if (customer == null) {
+			throw new CustomerNotFoundException("Cliente com o ID " + dto.getId() +" não encontrado");
+		}
+		customer = dto.convertDTOToEntity();
+		
 		Customer customerToUpdate = customerService.save(customer);
 		
 		CustomerDTO itemDTO = customerToUpdate.convertEntityToDTO();
@@ -370,7 +376,7 @@ public class CustomerController {
 	@ApiOperation(value = "Rota para encontrar clientes pelo documento")
 	public ResponseEntity<Response<List<CustomerDTO>>> findByDocument(@RequestHeader(value=CustomerApiUtil.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, defaultValue="${api.version}") 
 		String apiVersion, @RequestHeader(value=CustomerApiUtil.HEADER_API_KEY, defaultValue="${api.key}") String apiKey, 
-		@PathVariable("customerName") String customerDocument) throws CustomerNotFoundException {
+		@PathVariable("customerDocument") String customerDocument) throws CustomerNotFoundException {
 		
 		Response<List<CustomerDTO>> response = new Response<>();
 		Optional<Customer> customer = customerService.findByDocument(customerDocument);

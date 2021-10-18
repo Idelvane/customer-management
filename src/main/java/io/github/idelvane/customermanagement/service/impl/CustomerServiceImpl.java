@@ -32,6 +32,9 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	@Override
 	public Customer save(Customer customer) {
+		if (customer.getId() != null) {
+			customer.setUpdatedAt(LocalDateTime.now());
+		}
 		return customerRepository.save(customer);
 	}
 

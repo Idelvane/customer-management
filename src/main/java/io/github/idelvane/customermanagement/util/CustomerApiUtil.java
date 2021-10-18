@@ -4,9 +4,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+
+import io.github.idelvane.customermanagement.model.Customer;
 
 
 /**
@@ -72,6 +75,17 @@ public class CustomerApiUtil {
 	 */
 	public static LocalDateTime convertLocalDateToLocalDateTime(LocalDate date) {
 		return date.atTime(0, 0, 0);
+	}
+
+	/**
+	 * Returna a idade de um {@link Customer} a partir da data de nascimento 
+	 * @param birthDate
+	 * @return
+	 */
+	public static int calculateAge(LocalDateTime birthDate) {
+		final LocalDate now = LocalDate.now();
+	    final Period period = Period.between(birthDate.toLocalDate(), now);
+	    return period.getYears();
 	}
 	
 }

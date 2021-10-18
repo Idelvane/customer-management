@@ -34,6 +34,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import io.github.idelvane.customermanagement.dto.CustomerDTO;
+import io.github.idelvane.customermanagement.enums.PersonTypeEnum;
 import io.github.idelvane.customermanagement.model.Customer;
 import io.github.idelvane.customermanagement.service.CustomerService;
 import io.github.idelvane.customermanagement.util.CustomerApiUtil;
@@ -49,7 +50,7 @@ public class CustomerControllerTest {
 	
 	static final Long ID = 1L;
 	static final String NAME = "Antonio";
-	static final String DOCUMENT = "001.001.001-11";
+	static final String DOCUMENT = "40518864090";
 	static final String EMAIL = "email.de.teste@teste.com";
 	static final String PHONE = "(86) 99999-0000";
 	static final String BIRTH_DATE = "1986-05-21T07:40:15.100";
@@ -78,7 +79,7 @@ public class CustomerControllerTest {
 		
 		BDDMockito.given(customerService.save(Mockito.any(Customer.class))).willReturn(getMockCustomer());
 		
-		mockMvc.perform(MockMvcRequestBuilders.post(URL).content(getPayloadDTO(ID, NAME, DOCUMENT, EMAIL, PHONE, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
+		mockMvc.perform(MockMvcRequestBuilders.post(URL).content(getPayloadDTO(ID, NAME, DOCUMENT, EMAIL, PHONE, PersonTypeEnum.FISICA, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
 				CustomerApiUtil.convertStringToLocalDateTime(CREATED_AT.concat("Z")), CustomerApiUtil.convertStringToLocalDateTime(UPDATED_AT.concat("Z"))))
 			.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
 			.headers(headers))
@@ -100,7 +101,7 @@ public class CustomerControllerTest {
 		
 		BDDMockito.given(customerService.save(Mockito.any(Customer.class))).willReturn(getMockCustomer());
 		
-		mockMvc.perform(MockMvcRequestBuilders.post(URL).content(getPayloadDTO(ID, NAME, null, EMAIL, PHONE, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
+		mockMvc.perform(MockMvcRequestBuilders.post(URL).content(getPayloadDTO(ID, NAME, null, EMAIL, PHONE, PersonTypeEnum.FISICA, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
 				CustomerApiUtil.convertStringToLocalDateTime(CREATED_AT.concat("Z")), CustomerApiUtil.convertStringToLocalDateTime(UPDATED_AT.concat("Z"))))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
 				.headers(headers))
@@ -110,15 +111,17 @@ public class CustomerControllerTest {
 	
 	private Customer getMockCustomer() throws ParseException {
 		
-		Customer customer = new Customer(ID, NAME, DOCUMENT, EMAIL, PHONE, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
+		Customer customer = new Customer(ID, NAME, DOCUMENT, EMAIL, PHONE, PersonTypeEnum.FISICA, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
 				CustomerApiUtil.convertStringToLocalDateTime(CREATED_AT.concat("Z")), CustomerApiUtil.convertStringToLocalDateTime(UPDATED_AT.concat("Z")));
+		
 		return customer;
 	}
 	
-	private String getPayloadDTO(Long id, String name, String document, String email, String phone, LocalDateTime birthDate, LocalDateTime createdAt, LocalDateTime updatedAt) 
+	private String getPayloadDTO(Long id, String name, String document, String email, String phone, PersonTypeEnum personType, LocalDateTime birthDate, LocalDateTime createdAt, LocalDateTime updatedAt) 
 			throws JsonProcessingException {
 		
 		CustomerDTO dto = CustomerDTO.builder().name(name).document(document).email(email).phone(phone)
+									.personType(personType)
 									.birthDate(birthDate).createdAt(createdAt).updatedAt(updatedAt).build();
 	        
 		ObjectMapper mapper = new ObjectMapper();

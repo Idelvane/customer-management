@@ -1,11 +1,13 @@
 package io.github.idelvane.customermanagement.dto;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Period;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.br.CNPJ;
+import org.hibernate.validator.constraints.br.CPF;
+import org.hibernate.validator.group.GroupSequenceProvider;
 import org.modelmapper.ModelMapper;
 import org.springframework.hateoas.RepresentationModel;
 
@@ -16,7 +18,11 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
+import io.github.idelvane.customermanagement.enums.PersonTypeEnum;
 import io.github.idelvane.customermanagement.model.Customer;
+import io.github.idelvane.customermanagement.util.validation.CnpjGroup;
+import io.github.idelvane.customermanagement.util.validation.CpfGroup;
+import io.github.idelvane.customermanagement.util.validation.CustomerGroupSequenceProvider;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -31,6 +37,7 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = false)
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@GroupSequenceProvider(CustomerGroupSequenceProvider.class)
 public class CustomerDTO extends RepresentationModel<CustomerDTO>{
 	
 	private Long id;
@@ -39,13 +46,21 @@ public class CustomerDTO extends RepresentationModel<CustomerDTO>{
 	private String name;
 	
 	@NotNull(message="O documento não pode ficar em branco")
+	@CPF(groups = CpfGroup.class)
+	@CNPJ(groups = CnpjGroup.class)
 	private String document;
 	
 	@NotNull(message="O e-mail não pode ficar em branco")
+	@Email
 	private String email;
 	
 	
 	private String phone;
+	
+	@NotNull
+	private PersonTypeEnum personType;
+	
+	private int age;
 	
 	@JsonSerialize(using = ToStringSerializer.class)
 	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
@@ -70,14 +85,5 @@ public class CustomerDTO extends RepresentationModel<CustomerDTO>{
 		return new ModelMapper().map(this, Customer.class);
 	}
 
-	/**
-	 * método responsável por retornar a idade do cliente
-	 * @return
-	 */
-	public int getAge() {
-		final LocalDate now = LocalDate.now();
-	    final Period period = Period.between(this.birthDate.toLocalDate(), now);
-	    return period.getYears();
-	}
 	
 }
