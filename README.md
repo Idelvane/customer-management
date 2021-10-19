@@ -43,18 +43,24 @@ Os principais endpoints da API são:
 # Como Rodar?
 
 * Para executar o projeto é necessário que se tenha o docker instalado.
-* Nessa primeira versão é necessário fazer o build do projeto e copiar o jar gerado na pasta target:
+* Após a instalação, rode os seguintes comandos:
+
 ```bash
-	cp target/customer-management-0.0.1-SNAPSHOT.jar src/main/docker
+docker-compose build --force-rm
+docker-compose up -d
 ```
-* Feito isso, é necessário rodar a aplicação: docker-compose up;
 * Para acesso da documentação com Swagger: http://localhost:8080/swagger-ui/index.html
 
 Outra alternativa é rodar o projeto a partir do jar:
 ```bash
-java -jar customer-management-0.0.1-SNAPSHOT.jar
+java -jar customer-management-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
 ```
-Para isso é necessário que se tenha o java 11 instalado, assim como o postgres. Deve ser adicionado o usuário pgteste:
+ou
+
+```bash
+mvn spring-boot:run -Dspring.profiles.active=dev
+```
+Para isso é necessário que se tenha o java 11 instalado, assim como o Postgres. Deve ser adicionado o usuário pgteste:
 ```bash
 sudo -u postgres createuser -s -i -d -r -l -w pgteste
 ```
