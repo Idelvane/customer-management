@@ -46,7 +46,7 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public Customer findById(Long id) throws CustomerNotFoundException {
 		return customerRepository.findById(id)
-				.orElseThrow(() -> new CustomerNotFoundException("Cliente  de id=" + id + " não encontrado"));
+				.orElseThrow(() -> new CustomerNotFoundException("Cliente  de id " + id + " não encontrado"));
 	}
 
 	@Override
