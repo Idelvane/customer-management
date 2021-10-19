@@ -43,7 +43,12 @@ Os principais endpoints da API são:
 
 # Como Rodar?
 
-* Para executar o projeto é necessário que se tenha o docker instalado.
+* Para executar o projeto, existem duas possibilidades:
+
+**Docker**
+
+Para isso, é necessário que se tenha o docker instalado.
+
 * Após a instalação, rode os seguintes comandos:
 
 ```bash
@@ -51,6 +56,8 @@ docker-compose build --force-rm
 docker-compose up -d
 ```
 * Para acesso da documentação com Swagger: http://localhost:8080/swagger-ui/index.html
+
+**Executando o JAR**
 
 Outra alternativa é rodar o projeto a partir do jar:
 ```bash
@@ -74,6 +81,9 @@ Depois disso deve ser criado o banco:
 ```bash
 create database customer;
 ```
+### Heroku
+
+Acesso da documentação com Swagger no Heroku: https://api-customer-management-test.herokuapp.com/swagger-ui/index.html
 
 ### Test
 
