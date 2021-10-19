@@ -37,6 +37,7 @@ Os principais endpoints da API são:
 * **PostgreSQL 13**
 * **Swagger 3.0.0**
 * **Model Mapper 2.3.9**
+* **Travis CI**
 * **Heroku**
 
 
