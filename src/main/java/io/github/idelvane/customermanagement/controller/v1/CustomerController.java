@@ -126,7 +126,7 @@ public class CustomerController {
 	 * 500, 502, 503, 504 - Server Errors
 	 * 
 	 */
-	@PutMapping(path = "/{id}")
+	@PutMapping
 	@ApiOperation(value = "Rota utilizada para atualizar um cliente")
 	public ResponseEntity<Response<CustomerDTO>> update(@RequestHeader(value=CustomerApiUtil.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, defaultValue="${api.version}") String apiVersion, 
 		@RequestHeader(value=CustomerApiUtil.HEADER_API_KEY, defaultValue="${api.key}") String apiKey, @Valid @RequestBody CustomerDTO dto, BindingResult result) 
@@ -145,7 +145,6 @@ public class CustomerController {
 			throw new CustomerNotFoundException("Cliente com o ID " + dto.getId() +" não encontrado");
 		}
 		customer = dto.convertDTOToEntity();
-		
 		Customer customerToUpdate = customerService.save(customer);
 		
 		CustomerDTO itemDTO = customerToUpdate.convertEntityToDTO();
@@ -230,13 +229,13 @@ public class CustomerController {
 		Customer customer = customerService.findById(customerId);
 		
 		customerService.deleteById(customer.getId());
-		response.setData("Customer com id:" + customer.getId() + ", deletado com sucesso");
+		response.setData("Customer com id " + customer.getId() + ", deletado com sucesso");
 		
 		MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
 		headers.add(CustomerApiUtil.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, apiVersion);
 		headers.add(CustomerApiUtil.HEADER_API_KEY, apiKey);
 		
-		return new ResponseEntity<>(response, headers, HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(response, headers, HttpStatus.OK);
 	}
 	
 	/**

@@ -7,17 +7,18 @@ services:
       context: .
     container_name: customer-management
     depends_on:
-      - db
+      - postgres
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/customers
       - SPRING_DATASOURCE_USERNAME=pgteste
       - SPRING_DATASOURCE_PASSWORD=pgteste
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
           
-  db:
+  postgres:
     image: 'postgres:13.1-alpine'
-    container_name: db
+    container_name: postgres
     environment:
          - POSTGRES_PASSWORD=pgteste
          - POSTGRES_USER=pgteste
          - POSTGRES_DB=customers
+    restart: unless-stopped

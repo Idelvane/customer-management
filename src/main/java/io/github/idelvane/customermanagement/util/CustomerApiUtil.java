@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import io.github.idelvane.customermanagement.model.Customer;
@@ -31,26 +30,6 @@ public class CustomerApiUtil {
 	
 	
 	private CustomerApiUtil() {}
-	
-	
-	/**
-	 * Formata data no formato yyyy-MM-dd.
-	 * 
-	 * 
-	 * @return <code>DateTimeFormatter</code> object
-	 */
-	public static DateTimeFormatter getDateFormater() {
-		return DateTimeFormatter.ofPattern("yyyy-MM-dd");
-	}
-	
-	/**
-	 * Formata data no formato yyyy-MM-dd'T'HH:mm:ss.SSS'Z'.
-	 * 
-	 * @return <code>DateTimeFormatter</code> object
-	 */
-	public static DateTimeFormatter getDateTimeFormater() {
-		return DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-	}
 	
 	/**
 	 * Converte uma String em LocalDateTime.
