@@ -1,0 +1,453 @@
+{
+	"info": {
+		"_postman_id": "45298010-79e8-4902-b255-8fa5a8464357",
+		"name": "Customer-management",
+		"description": "Endpoints do projeto customer-management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "T3ST3-12356709"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"antonio.teste@teste.com\",\n  \"name\": \"Antonio\",\n  \"password\": \"159159\",\n  \"role\": \"ADMIN\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/customer-management/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"customer-management",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "T3ST3-12356709"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"antonio.teste@teste.com\",\n  \"password\": \"159159\"\n}\n "
+				},
+				"url": {
+					"raw": "http://localhost:8081/customer-management/v1/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"customer-management",
+						"v1",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createCustomer1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbmlvLnRlc3RlQHRlc3RlLmNvbSIsInJvbGUiOiJBRE1JTiIsImNyZWF0ZWQiOjE2MzQ2OTM2MDg3OTUsImV4cCI6MTYzNDY5NzIwOH0.f3r0cRP-Pc3tkRYlMf0fP3PDM2veWUsoXeEfyPhBGGEMnNbhmJtmOTRaz40mWg1hrdEsBIrR_7Y3WplNhQYpDA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "T3ST3-12356709"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\": \"Antonio\",\n   \"document\": \"26197769026\",\n   \"email\": \"email.idelvane@teste.com\",\n   \"phone\": \"(86) 9999-9900\",\n   \"personType\": \"FISICA\",\n   \"birthDate\": \"1986-05-21T07:40:51.312\",\n   \"createdAt\": \"2021-10-13T14:22:00.500\",\n   \"updatedAt\": \"2021-10-13T14:22:00.100\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/customer-management/v1/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"customer-management",
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createCustomer2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "T3ST3-12356709"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"name\": \"Maria\",\n   \"document\": \"53871739057\",\n   \"email\": \"email.da.maria@teste.com\",\n   \"phone\": \"(86) 9999-9902\",\n   \"personType\": \"FISICA\",\n   \"birthDate\": \"1990-06-20T07:40:51.312\",\n   \"createdAt\": \"2021-10-12T14:22:00.500\",\n   \"updatedAt\": \"2021-10-12T14:23:00.100\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/customer-management/v1/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"customer-management",
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbmlvLnRlc3RlQHRlc3RlLmNvbSIsInJvbGUiOiJBRE1JTiIsImNyZWF0ZWQiOjE2MzQ2OTM2MDg3OTUsImV4cCI6MTYzNDY5NzIwOH0.f3r0cRP-Pc3tkRYlMf0fP3PDM2veWUsoXeEfyPhBGGEMnNbhmJtmOTRaz40mWg1hrdEsBIrR_7Y3WplNhQYpDA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "T3ST3-12356709"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"id\": 1,\n   \"name\": \"Antonio Idelvane\",\n   \"document\": \"01788561341\",\n   \"email\": \"email.idelvane@teste.com\",\n   \"phone\": \"(86) 9999-9801\",\n   \"personType\": \"FISICA\",\n   \"birthDate\": \"1996-05-21T07:40:51.312\",\n   \"createdAt\": \"2021-10-13T14:22:00.500\",\n   \"updatedAt\": \"2021-10-13T14:22:00.100\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8081/customer-management/v1/customers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"customer-management",
+						"v1",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findAllBetweenCreatedAt",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbmlvLnRlc3RlQHRlc3RlLmNvbSIsInJvbGUiOiJBRE1JTiIsImNyZWF0ZWQiOjE2MzQ2OTM2MDg3OTUsImV4cCI6MTYzNDY5NzIwOH0.f3r0cRP-Pc3tkRYlMf0fP3PDM2veWUsoXeEfyPhBGGEMnNbhmJtmOTRaz40mWg1hrdEsBIrR_7Y3WplNhQYpDA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "T3ST3-12356709"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/customer-management/v1/customers?startDate=2021-10-10&endDate=2021-10-20&page=1&size=5&sort=id,DESC",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"customer-management",
+						"v1",
+						"customers"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-10-10"
+						},
+						{
+							"key": "endDate",
+							"value": "2021-10-20"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						},
+						{
+							"key": "sort",
+							"value": "id,DESC"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbmlvLnRlc3RlQHRlc3RlLmNvbSIsInJvbGUiOiJBRE1JTiIsImNyZWF0ZWQiOjE2MzQ2OTM2MDg3OTUsImV4cCI6MTYzNDY5NzIwOH0.f3r0cRP-Pc3tkRYlMf0fP3PDM2veWUsoXeEfyPhBGGEMnNbhmJtmOTRaz40mWg1hrdEsBIrR_7Y3WplNhQYpDA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "T3ST3-12356709"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/customer-management/v1/customers/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"customer-management",
+						"v1",
+						"customers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findByName",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbmlvLnRlc3RlQHRlc3RlLmNvbSIsInJvbGUiOiJBRE1JTiIsImNyZWF0ZWQiOjE2MzQ2ODk4NzU3OTUsImV4cCI6MTYzNDY5MzQ3NX0.H22ir9Hdlw48a-1FsCOAfXXMvMZZC-adlmKoKkdp0i4VvXoMNtHp8VrH2PCxglqeKfSn9jdO01PJL1Bd-uFSxA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "T3ST3-12356709"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8081/customer-management/v1/customers/byName/Maria",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"customer-management",
+						"v1",
+						"customers",
+						"byName",
+						"Maria"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findByDocument",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbmlvLnRlc3RlQHRlc3RlLmNvbSIsInJvbGUiOiJBRE1JTiIsImNyZWF0ZWQiOjE2MzQ2ODk4NzU3OTUsImV4cCI6MTYzNDY5MzQ3NX0.H22ir9Hdlw48a-1FsCOAfXXMvMZZC-adlmKoKkdp0i4VvXoMNtHp8VrH2PCxglqeKfSn9jdO01PJL1Bd-uFSxA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "T3ST3-12356709"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/customer-management/v1/customers/byDocument/01788561341",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"customer-management",
+						"v1",
+						"customers",
+						"byDocument",
+						"01788561341"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findByEmail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbmlvLnRlc3RlQHRlc3RlLmNvbSIsInJvbGUiOiJBRE1JTiIsImNyZWF0ZWQiOjE2MzQ2ODk4NzU3OTUsImV4cCI6MTYzNDY5MzQ3NX0.H22ir9Hdlw48a-1FsCOAfXXMvMZZC-adlmKoKkdp0i4VvXoMNtHp8VrH2PCxglqeKfSn9jdO01PJL1Bd-uFSxA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "T3ST3-12356709"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/customer-management/v1/customers/byEmail/email.idelvane@teste.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"customer-management",
+						"v1",
+						"customers",
+						"byEmail",
+						"email.idelvane@teste.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbnRvbmlvLnRlc3RlQHRlc3RlLmNvbSIsInJvbGUiOiJBRE1JTiIsImNyZWF0ZWQiOjE2MzQ2OTM2MDg3OTUsImV4cCI6MTYzNDY5NzIwOH0.f3r0cRP-Pc3tkRYlMf0fP3PDM2veWUsoXeEfyPhBGGEMnNbhmJtmOTRaz40mWg1hrdEsBIrR_7Y3WplNhQYpDA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "T3ST3-12356709"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8081/customer-management/v1/customers/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"customer-management",
+						"v1",
+						"customers",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
