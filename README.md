@@ -16,7 +16,8 @@ A aplicação tem o intuito de manipulação de dados de um cliente. Para isso �
 
 # Endpoints
 
-* Criar usuário: POST /customer-management/v1/users
+* Criar usuário: POST /customer-management/v1/users 
+
 **Body:**
 ```json
 {
@@ -44,7 +45,8 @@ A aplicação tem o intuito de manipulação de dados de um cliente. Para isso �
     }
 }
 ```
-* Autenticar (para utilização dos demais endpoints): POST /customer-management/v1/auth
+* Autenticar (para utilização dos demais endpoints): POST /customer-management/v1/auth 
+
 **Body:**
 ```json
 {
@@ -63,7 +65,8 @@ A aplicação tem o intuito de manipulação de dados de um cliente. Para isso �
 ```
 **Para os demais endpoints é necessário que se realize a autenticação prévia e seja passado o token como parâmetro: Bearer token**
 
-* Criar um cliente: POST /customer-management/v1/customers
+* Criar um cliente: POST /customer-management/v1/customers*
+
 **Body:**
 
 ```json
@@ -178,15 +181,19 @@ A aplicação tem o intuito de manipulação de dados de um cliente. Para isso �
 }
 ```
 * Filtrar cliente por nome: GET /customer-management/v1/customers/byName/{name}
+
 **Retorno semelhante ao endpoint GET /customer-management/v1/customers/1**
 
 * Filtrar cliente por documento: GET /customer-management/v1/customers/byDocument/{document}
+
 **Retorno semelhante ao endpoint GET /customer-management/v1/customers/1**
 
 * Filtrar cliente pelo e-amil: GET /customer-management/v1/customers/byEmail/{email}
+
 **Retorno semelhante ao endpoint GET /customer-management/v1/customers/1**
 
 * Buscar clientes pela data de cadastro (ordenados e paginados): GET /customer-management/v1/customers?startDate=2021-10-10&endDate=2021-10-20&page=1&size=5&sort=id,DESC
+
 **Retorno**
 ```json
 {
