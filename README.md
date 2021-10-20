@@ -65,7 +65,7 @@ A aplicação tem o intuito de manipulação de dados de um cliente. Para isso �
 ```
 **Para os demais endpoints é necessário que se realize a autenticação prévia e seja passado o token como parâmetro: Bearer token**
 
-* Criar um cliente: POST /customer-management/v1/customers*
+* Criar um cliente: POST /customer-management/v1/customers
 
 **Body:**
 
@@ -251,6 +251,9 @@ A aplicação tem o intuito de manipulação de dados de um cliente. Para isso �
 * **Model Mapper 2.3.9**
 * **Travis CI**
 * **Heroku**
+* **Lombok**
+* **Log4j**
+* **Postman**
 
 
 # Como Rodar?
