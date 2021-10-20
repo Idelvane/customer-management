@@ -18,8 +18,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import io.github.idelvane.customermanagement.util.security.JwtTokenUtil;
 
 /**
- * Classe que implementa um filtro JwtAuthentication garantido uma execução por request.  
- * 
+ * Classe que implementa um filtro JwtAuthentication garantindo uma execução por request.  
+ * @author idelvane
  */
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 	

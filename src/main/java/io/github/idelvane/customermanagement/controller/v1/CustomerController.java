@@ -43,6 +43,11 @@ import io.github.idelvane.customermanagement.util.ApiUtils;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * 
+ * @author idelvane
+ *
+ */
 @Log4j2
 @RestController
 @RequestMapping("/customer-management/v1/customers")
@@ -79,7 +84,7 @@ public class CustomerController {
 	 */
 	@PostMapping
 	@ApiOperation(value = "Rota responsável pela criação de um novo cliente")
-	public ResponseEntity<Response<CustomerDTO>> create(@RequestHeader(value=ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, defaultValue="${api.version}") String apiVersion, 
+	public ResponseEntity<Response<CustomerDTO>> create(@RequestHeader(value=ApiUtils.API_VERSION, defaultValue="${api.version}") String apiVersion, 
 			@RequestHeader(value=ApiUtils.HEADER_API_KEY, defaultValue="${api.key}") String apiKey, @Valid @RequestBody CustomerDTO dto, BindingResult result){
 		
 		Response<CustomerDTO> response = new Response<>();
@@ -98,7 +103,7 @@ public class CustomerController {
 		response.setData(dtoSaved);
 		
 		MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-		headers.add(ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, apiVersion);
+		headers.add(ApiUtils.API_VERSION, apiVersion);
 		headers.add(ApiUtils.HEADER_API_KEY, apiKey);
 		
 		return new ResponseEntity<>(response, headers, HttpStatus.CREATED);
@@ -128,7 +133,7 @@ public class CustomerController {
 	 */
 	@PutMapping
 	@ApiOperation(value = "Rota utilizada para atualizar um cliente")
-	public ResponseEntity<Response<CustomerDTO>> update(@RequestHeader(value=ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, defaultValue="${api.version}") String apiVersion, 
+	public ResponseEntity<Response<CustomerDTO>> update(@RequestHeader(value=ApiUtils.API_VERSION, defaultValue="${api.version}") String apiVersion, 
 		@RequestHeader(value=ApiUtils.HEADER_API_KEY, defaultValue="${api.key}") String apiKey, @Valid @RequestBody CustomerDTO dto, BindingResult result) 
 		throws CustomerNotFoundException{
 		
@@ -152,7 +157,7 @@ public class CustomerController {
 		response.setData(itemDTO);
 		
 		MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-		headers.add(ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, apiVersion);
+		headers.add(ApiUtils.API_VERSION, apiVersion);
 		headers.add(ApiUtils.HEADER_API_KEY, apiKey);
 		
 		return new ResponseEntity<>(response, headers, HttpStatus.OK);
@@ -181,7 +186,7 @@ public class CustomerController {
 	 */
 	@GetMapping(value = "/{id}")
 	@ApiOperation(value = "Rota utilizada para encontrar um cliente a partir do seu ID")
-	public ResponseEntity<Response<CustomerDTO>> findById(@RequestHeader(value=ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, defaultValue="${api.version}") 
+	public ResponseEntity<Response<CustomerDTO>> findById(@RequestHeader(value=ApiUtils.API_VERSION, defaultValue="${api.version}") 
 		String apiVersion, @RequestHeader(value=ApiUtils.HEADER_API_KEY, defaultValue="${api.key}") String apiKey, @PathVariable("id") Long customerId) throws CustomerNotFoundException {
 		
 		Response<CustomerDTO> response = new Response<>();
@@ -193,7 +198,7 @@ public class CustomerController {
 		response.setData(dto);
 		
 		MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-		headers.add(ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, apiVersion);
+		headers.add(ApiUtils.API_VERSION, apiVersion);
 		headers.add(ApiUtils.HEADER_API_KEY, apiKey);
 		
 		return new ResponseEntity<>(response, headers, HttpStatus.OK);
@@ -221,7 +226,7 @@ public class CustomerController {
 	 */
 	@DeleteMapping(value = "/{id}")
 	@ApiOperation(value = "Rota responsável por deletar um cliente via API")
-	public ResponseEntity<Response<String>> delete(@RequestHeader(value=ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, defaultValue="${api.version}") 
+	public ResponseEntity<Response<String>> delete(@RequestHeader(value=ApiUtils.API_VERSION, defaultValue="${api.version}") 
 		String apiVersion, @RequestHeader(value=ApiUtils.HEADER_API_KEY, defaultValue="${api.key}") String apiKey, 
 		@PathVariable("id") Long customerId) throws CustomerNotFoundException {
 		
@@ -232,7 +237,7 @@ public class CustomerController {
 		response.setData("Customer com id " + customer.getId() + ", deletado com sucesso");
 		
 		MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-		headers.add(ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, apiVersion);
+		headers.add(ApiUtils.API_VERSION, apiVersion);
 		headers.add(ApiUtils.HEADER_API_KEY, apiKey);
 		
 		return new ResponseEntity<>(response, headers, HttpStatus.OK);
@@ -262,7 +267,7 @@ public class CustomerController {
 	 */
 	@GetMapping(value = "/byName/{customerName}")
 	@ApiOperation(value = "Rota para encontrar clientes pelo nome")
-	public ResponseEntity<Response<List<CustomerDTO>>> findByName(@RequestHeader(value=ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, defaultValue="${api.version}") 
+	public ResponseEntity<Response<List<CustomerDTO>>> findByName(@RequestHeader(value=ApiUtils.API_VERSION, defaultValue="${api.version}") 
 		String apiVersion, @RequestHeader(value=ApiUtils.HEADER_API_KEY, defaultValue="${api.key}") String apiKey, 
 		@PathVariable("customerName") String customerName) throws CustomerNotFoundException {
 		
@@ -287,7 +292,7 @@ public class CustomerController {
 		response.setData(customersDTO);
 		
 		MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-		headers.add(ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, apiVersion);
+		headers.add(ApiUtils.API_VERSION, apiVersion);
 		headers.add(ApiUtils.HEADER_API_KEY, apiKey);
 		
 		return new ResponseEntity<>(response, headers, HttpStatus.OK);
@@ -318,7 +323,7 @@ public class CustomerController {
 	 */
 	@GetMapping(value = "/byEmail/{customerEmail}")
 	@ApiOperation(value = "Rota para encontrar clientes pelo e-mail")
-	public ResponseEntity<Response<List<CustomerDTO>>> findByEmail(@RequestHeader(value=ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, defaultValue="${api.version}") 
+	public ResponseEntity<Response<List<CustomerDTO>>> findByEmail(@RequestHeader(value=ApiUtils.API_VERSION, defaultValue="${api.version}") 
 		String apiVersion, @RequestHeader(value=ApiUtils.HEADER_API_KEY, defaultValue="${api.key}") String apiKey, 
 		@PathVariable("customerEmail") String customerEmail) throws CustomerNotFoundException {
 		
@@ -343,7 +348,7 @@ public class CustomerController {
 		response.setData(customersDTO);
 		
 		MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-		headers.add(ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, apiVersion);
+		headers.add(ApiUtils.API_VERSION, apiVersion);
 		headers.add(ApiUtils.HEADER_API_KEY, apiKey);
 		
 		return new ResponseEntity<>(response, headers, HttpStatus.OK);
@@ -373,7 +378,7 @@ public class CustomerController {
 	 */
 	@GetMapping(value = "/byDocument/{customerDocument}")
 	@ApiOperation(value = "Rota para encontrar clientes pelo documento")
-	public ResponseEntity<Response<List<CustomerDTO>>> findByDocument(@RequestHeader(value=ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, defaultValue="${api.version}") 
+	public ResponseEntity<Response<List<CustomerDTO>>> findByDocument(@RequestHeader(value=ApiUtils.API_VERSION, defaultValue="${api.version}") 
 		String apiVersion, @RequestHeader(value=ApiUtils.HEADER_API_KEY, defaultValue="${api.key}") String apiKey, 
 		@PathVariable("customerDocument") String customerDocument) throws CustomerNotFoundException {
 		
@@ -398,7 +403,7 @@ public class CustomerController {
 		response.setData(customersDTO);
 		
 		MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-		headers.add(ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, apiVersion);
+		headers.add(ApiUtils.API_VERSION, apiVersion);
 		headers.add(ApiUtils.HEADER_API_KEY, apiKey);
 		
 		return new ResponseEntity<>(response, headers, HttpStatus.OK);
@@ -429,7 +434,7 @@ public class CustomerController {
 	 */
 	@GetMapping
 	@ApiOperation(value = "Rota que encontra todos os clientes de acordo com o período de cadastro")
-	public ResponseEntity<Response<List<CustomerDTO>>> findAllBetweenCreatedAt(@RequestHeader(value=ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, defaultValue="${api.version}") 
+	public ResponseEntity<Response<List<CustomerDTO>>> findAllBetweenCreatedAt(@RequestHeader(value=ApiUtils.API_VERSION, defaultValue="${api.version}") 
 		String apiVersion, @RequestHeader(value=ApiUtils.HEADER_API_KEY, defaultValue="${api.key}") String apiKey, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") 
 	    LocalDate startDate, @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate endDate, 
 	    @PageableDefault(page = 1, size = 10) Pageable pageable) throws CustomerNotFoundException {
@@ -459,7 +464,7 @@ public class CustomerController {
 		response.setData(itemsDTO);
 		
 		MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-		headers.add(ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, apiVersion);
+		headers.add(ApiUtils.API_VERSION, apiVersion);
 		headers.add(ApiUtils.HEADER_API_KEY, apiKey);
 		
 		return new ResponseEntity<>(response, headers, HttpStatus.OK);

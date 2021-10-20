@@ -8,7 +8,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+import org.modelmapper.ModelMapper;
+
+import io.github.idelvane.customermanagement.dto.UserDTO;
 import io.github.idelvane.customermanagement.enums.RoleEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +29,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
+@Table(name = "users")
 public class User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -41,5 +46,13 @@ public class User implements Serializable{
 	
 	@Enumerated(EnumType.STRING)
 	private RoleEnum role;
+	
+	/**
+	 * converte um {@link User} em {@link UserDTO}
+	 * @return
+	 */
+	public UserDTO convertEntityToDTO() {
+		return new ModelMapper().map(this, UserDTO.class);
+	}
 	
 }

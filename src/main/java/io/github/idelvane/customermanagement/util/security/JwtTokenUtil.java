@@ -14,24 +14,15 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 /**
- * Class that implements a JwtToken utility methods
+ * Classe que implementa métodos utilitário para o JwtToken
  */
 @Component
 public class JwtTokenUtil {
 	
-	/**
-	 * Field to represent the claim key username
-	 */
 	private static final String CLAIM_KEY_USERNAME = "sub";
 	
-	/**
-	 * Field to represent the claim key role
-	 */
 	private static final String CLAIM_KEY_ROLE = "role";
 	
-	/**
-	 * Field to represent the claim key created
-	 */
 	private static final String CLAIM_KEY_CREATED = "created";
 
 	@Value("${jwt.secret}")
@@ -41,7 +32,7 @@ public class JwtTokenUtil {
 	private Long expiration;
 
 	/**
-	 * Method that returns the username from the valid token.
+	 * Método que retorna o nome do usuario (email) a partir de um token
 	 * 
 	 * @param token
 	 * @return String - username
@@ -61,7 +52,7 @@ public class JwtTokenUtil {
 	}
 
 	/**
-	 * Method that returns the expiration date from the valid token.
+	 * Metodo que retorna da data de expiração de um token
 	 * 
 	 * 
 	 * @param token
@@ -82,7 +73,7 @@ public class JwtTokenUtil {
 	}
 
 	/**
-	 * Method that returns if the token is valid or not.
+	 * Metodo que indica se um token é válido
 	 * 
 	 * @param token
 	 * @return boolean
@@ -92,7 +83,7 @@ public class JwtTokenUtil {
 	}
 
 	/**
-	 * Method that returns the generated token.
+	 * Metodo que retorna um token para um usuário
 	 * 
 	 * 
 	 * @param userDetails
@@ -107,27 +98,7 @@ public class JwtTokenUtil {
 		return generateToken(claims);
 	}
 	
-	/**
-	 * Method that returns the generated token.
-	 * 
-	 * @param username
-	 * @return String - token
-	 */
-	public String getToken(String username) {
-		Map<String, Object> claims = new HashMap<>();
-		claims.put(CLAIM_KEY_USERNAME, username);
-		claims.put(CLAIM_KEY_CREATED, new Date());
 
-		return generateToken(claims);
-	}
-
-	/**
-	 * Method that parses the specified compact serialized JWS string based on the builder's current 
-	 * configuration state and returns the resulting Claims JWS instance. 
-	 * 
-	 * @param token
-	 * @return Claims object
-	 */
 	private Claims getClaimsFromToken(String token) throws AuthenticationException {
 		
 		Claims claims;
@@ -141,8 +112,7 @@ public class JwtTokenUtil {
 	}
 
 	/**
-	 * Method that returns the expiration date of a token.
-	 * 
+	 * Método que retorna a data de expiração de um token
 	 * 
 	 * @return Date - expirationDate 
 	 */
@@ -151,7 +121,7 @@ public class JwtTokenUtil {
 	}
 	
 	/**
-	 * Method that returns if the token is expired or not
+	 * Método que retorna se um token está expirado ou não
 	 * 
 	 * @param token
 	 * @return boolean
@@ -165,7 +135,7 @@ public class JwtTokenUtil {
 	}
 	
 	/**
-	 * Method that generates an valid token for the authenticated user.
+	 * Método que gera um token valido
 	 * 
 	 * @param claims
 	 * @return String - token

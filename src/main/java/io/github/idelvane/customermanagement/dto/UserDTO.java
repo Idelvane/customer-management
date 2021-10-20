@@ -11,6 +11,7 @@ import org.springframework.hateoas.RepresentationModel;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import io.github.idelvane.customermanagement.model.User;
+import io.github.idelvane.customermanagement.util.ApiUtils;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -52,6 +53,10 @@ public class UserDTO extends RepresentationModel<UserDTO>{
 	private String role;
 	
 
+	public String getPassword() {
+		return ApiUtils.getHash(this.password);
+	}
+	
 	/**
 	 * Método que converte um UserDTO para {@link User}
 	 * 

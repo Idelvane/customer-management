@@ -13,7 +13,7 @@ import io.github.idelvane.customermanagement.model.security.JwtUserFactory;
 import io.github.idelvane.customermanagement.service.UserService;
 
 /**
- * Class that implements UserDetailsService interface which loads user-specific data.
+ * Classe que implementa {@link UserDetailsService} e carrega um usuário pelo nome de usuário, no caso o e-mail
  * 
  */
 @Service
@@ -34,7 +34,7 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
 			return JwtUserFactory.create(user.get());
 		}
 
-		throw new UsernameNotFoundException("User/Email not found.");
+		throw new UsernameNotFoundException("Usuário não encontrado.");
 	}
 
 }

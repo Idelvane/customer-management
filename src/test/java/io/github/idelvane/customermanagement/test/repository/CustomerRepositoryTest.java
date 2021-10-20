@@ -1,5 +1,6 @@
 package io.github.idelvane.customermanagement.test.repository;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -131,6 +132,17 @@ public class CustomerRepositoryTest {
 		assertFalse(response.isEmpty());
 	}
 	
+	@Test
+	@Order(6)
+	public void testUpdateCustomer2() throws ParseException {
+		
+		String newDocument = "36152479061";
+		Customer customerNumber2 = new Customer(2L, "Antonio", newDocument, EMAIL, PHONE, PersonTypeEnum.FISICA, ApiUtils.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
+				LocalDateTime.of(2021, 10, 13, 13, 40), LocalDateTime.now());
+		
+		customerRepository.save(customerNumber2);
+		assertEquals(customerNumber2.getDocument(), newDocument);
+	}
 	/**
 	 * Deleta todos os customers criados
 	 */

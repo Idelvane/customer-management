@@ -46,26 +46,26 @@ public class AuthenticationController {
 	private UserDetailsService userDetailsService;
 	
 	/**
-	 * Method that generates valid JWT tokens to authorize access for API clients.
+	 * Método que gera um token JWT valida para autorização de acesso à API
 	 * 
 	 * @param dto
 	 * @param result
-	 * @return ResponseEntity with a Response<TokenDTO> object and the HTTP status
+	 * @return ResponseEntity com um objeto <code>Response<CustomerDTO></code e HTTP status
 	 * 
 	 * HTTP Status:
 	 * 
-	 * 200 - OK: Everything worked as expected.
-	 * 400 - Bad Request: The request was unacceptable, often due to missing a required parameter.
-	 * 401 - Unauthorized: No valid API key provided.
-	 * 403 - Forbidden: The API key doesn't have permissions to perform the request.
-	 * 404 - Not Found: The requested resource doesn't exist.
-	 * 429 - Too Many Requests: Too many requests hit the API too quickly. We recommend an exponential back-off of your requests.
-	 * 500, 502, 503, 504 - Server Errors: something went wrong on Financial Java API end (These are rare).
+	 * 201 - Created
+	 * 400 - Bad Request
+	 * 404 - Not Found
+	 * 409 - Conflict
+	 * 422 – Unprocessable Entity
+	 * 429 - Too Many Requests
+	 * 500, 502, 503, 504 - Server Errors
 	 * 
 	 * @throws AuthenticationException
 	 */
 	@PostMapping
-	public ResponseEntity<Response<TokenDTO>> generateTokenJwt(@RequestHeader(value=ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, defaultValue = "${api.version}") 
+	public ResponseEntity<Response<TokenDTO>> generateTokenJwt(@RequestHeader(value=ApiUtils.API_VERSION, defaultValue = "${api.version}") 
 		String apiVersion, @Valid @RequestBody JwtUserDTO dto, BindingResult result) throws AuthenticationException {
 		
 		Response<TokenDTO> response = new Response<>();
@@ -75,8 +75,7 @@ public class AuthenticationController {
 			return ResponseEntity.badRequest().body(response);
 		}
 		
-		Authentication authentication = manager.authenticate
-				(new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword()));
+		Authentication authentication = manager.authenticate(new UsernamePasswordAuthenticationToken(dto.getEmail(), dto.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		
 		UserDetails userDetails = userDetailsService.loadUserByUsername(dto.getEmail());
@@ -84,7 +83,7 @@ public class AuthenticationController {
 		response.setData(new TokenDTO(token));
 		
 		MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-		headers.add(ApiUtils.HEADER_CUSTOMER_MANAGEMENT_API_VERSION, apiVersion);
+		headers.add(ApiUtils.API_VERSION, apiVersion);
 		
 		return new ResponseEntity<>(response, headers, HttpStatus.OK);
 	}
