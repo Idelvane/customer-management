@@ -112,7 +112,7 @@ A aplicação tem o intuito de manipulação de dados de um cliente. Para isso �
 {
    "id": 1,
    "name": "Antonio Idelvane",
-   "document": "01788561341",
+   "document": "69531843023",
    "email": "email.idelvane@teste.com",
    "phone": "(86) 9999-9801",
    "personType": "FISICA",
@@ -127,7 +127,7 @@ A aplicação tem o intuito de manipulação de dados de um cliente. Para isso �
     "data": {
         "id": 1,
         "name": "Antonio Idelvane",
-        "document": "01788561341",
+        "document": "69531843023",
         "email": "email.idelvane@teste.com",
         "phone": "(86) 9999-9801",
         "personType": "FISICA",
@@ -163,7 +163,7 @@ A aplicação tem o intuito de manipulação de dados de um cliente. Para isso �
     "data": {
         "id": 1,
         "name": "Antonio Idelvane",
-        "document": "01788561341",
+        "document": "69531843023",
         "email": "email.idelvane@teste.com",
         "phone": "(86) 9999-9801",
         "personType": "FISICA",
@@ -201,7 +201,7 @@ A aplicação tem o intuito de manipulação de dados de um cliente. Para isso �
         {
             "id": 1,
             "name": "Antonio Idelvane",
-            "document": "01788561341",
+            "document": "69531843023",
             "email": "email.idelvane@teste.com",
             "phone": "(86) 9999-9801",
             "personType": "FISICA",
