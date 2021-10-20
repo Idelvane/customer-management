@@ -26,7 +26,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 import io.github.idelvane.customermanagement.dto.CustomerDTO;
 import io.github.idelvane.customermanagement.enums.PersonTypeEnum;
-import io.github.idelvane.customermanagement.util.CustomerApiUtil;
+import io.github.idelvane.customermanagement.util.ApiUtils;
 
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
@@ -49,9 +49,9 @@ public class CustomerManagementIntegrationTest {
         CustomerDTO customerDTO = CustomerDTO.builder().name("Antonio").document("72398677060").email("email.de.teste@teste.com")
         		.phone("(86) 99999-9999")
         		.personType(PersonTypeEnum.FISICA)
-				.birthDate(CustomerApiUtil.convertStringToLocalDateTime("1986-05-21T07:40:15.100Z"))
-				.createdAt(CustomerApiUtil.convertStringToLocalDateTime("2021-10-12T09:16:15.100Z"))
-				.updatedAt(CustomerApiUtil.convertStringToLocalDateTime("2021-10-12T09:16:16.100Z")).build(); 
+				.birthDate(ApiUtils.convertStringToLocalDateTime("1986-05-21T07:40:15.100Z"))
+				.createdAt(ApiUtils.convertStringToLocalDateTime("2021-10-12T09:16:15.100Z"))
+				.updatedAt(ApiUtils.convertStringToLocalDateTime("2021-10-12T09:16:16.100Z")).build(); 
         
         final HttpHeaders headers = new HttpHeaders();
         headers.set("X-api-key", "T3ST3-12356709");
@@ -71,9 +71,9 @@ public class CustomerManagementIntegrationTest {
         CustomerDTO customerDTO = CustomerDTO.builder().name("Maria").document("25612753020").email("email.da.maria@teste.com")
         		.phone("(86) 99999-9992")
         		.personType(PersonTypeEnum.FISICA)
-				.birthDate(CustomerApiUtil.convertStringToLocalDateTime("1990-06-21T07:40:15.100Z"))
-				.createdAt(CustomerApiUtil.convertStringToLocalDateTime("2021-10-10T09:16:15.100Z"))
-				.updatedAt(CustomerApiUtil.convertStringToLocalDateTime("2021-10-10T09:16:16.100Z")).build(); 
+				.birthDate(ApiUtils.convertStringToLocalDateTime("1990-06-21T07:40:15.100Z"))
+				.createdAt(ApiUtils.convertStringToLocalDateTime("2021-10-10T09:16:15.100Z"))
+				.updatedAt(ApiUtils.convertStringToLocalDateTime("2021-10-10T09:16:16.100Z")).build(); 
         
         final HttpHeaders headers = new HttpHeaders();
         headers.set("X-api-key", "T3ST3-12356709");

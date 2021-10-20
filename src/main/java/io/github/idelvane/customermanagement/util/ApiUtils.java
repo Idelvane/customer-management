@@ -8,6 +8,8 @@ import java.time.Period;
 import java.time.ZoneId;
 import java.util.Date;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import io.github.idelvane.customermanagement.model.Customer;
 
 
@@ -16,12 +18,12 @@ import io.github.idelvane.customermanagement.model.Customer;
  * 
  * @author Idelvane
  */
-public class CustomerApiUtil {
+public class ApiUtils {
 	
 	/**
 	 * Representa o API version nos requests/responses header
 	 */
-	public static final String HEADER_CUSTOMER_MANAGEMENT_API_VERSION = "customer-management-api-version";
+	public static final String API_VERSION = "customer-management-api-version";
 	
 	/**
 	 * Representa a chave da API no requests/responses header
@@ -29,7 +31,7 @@ public class CustomerApiUtil {
 	public static final String HEADER_API_KEY = "X-api-key";
 	
 	
-	private CustomerApiUtil() {}
+	private ApiUtils() {}
 	
 	/**
 	 * Converte uma String em LocalDateTime.
@@ -67,4 +69,44 @@ public class CustomerApiUtil {
 	    return period.getYears();
 	}
 	
+	public static String getHash(String password) {
+		
+		if(password == null) {
+			return null;
+		}
+		
+		if(isEncrypted(password)) {
+			return password;
+		}
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		return encoder.encode(password);
+	}
+	
+	/**
+	 * Method that check if the password is already encoding.
+	 * 
+	 * @param password
+	 * @return boolean
+	 */
+	public static boolean isEncrypted(String password) {
+		return password.startsWith("$2a$");
+	}
+	
+	/**
+	 * Method that decode the raw password.
+	 * 
+	 * @param password
+	 * @param encrypted
+	 * @return String password decoded
+	 */
+	public static String decode(String password, String encrypted) throws Exception {
+		BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+		boolean isPasswordMatches = bcrypt.matches(password, encrypted);
+		
+		if(!isPasswordMatches)
+			throw new Exception("Password does not match.");
+		
+		return password;
+	}
 }

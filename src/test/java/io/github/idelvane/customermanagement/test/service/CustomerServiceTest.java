@@ -36,7 +36,7 @@ import io.github.idelvane.customermanagement.enums.PersonTypeEnum;
 import io.github.idelvane.customermanagement.model.Customer;
 import io.github.idelvane.customermanagement.repository.CustomerRepository;
 import io.github.idelvane.customermanagement.service.CustomerService;
-import io.github.idelvane.customermanagement.util.CustomerApiUtil;
+import io.github.idelvane.customermanagement.util.ApiUtils;
 
 /**
  * Responsável pelos testes do service de Customer {@link CustomerService}
@@ -115,7 +115,7 @@ public class CustomerServiceTest {
 	private Customer getMockCustomer() throws ParseException {
 		
 		Customer customer = new Customer(1L, "José", "72398677060", "jose@deteste.com", "(86) 99985-9999", PersonTypeEnum.FISICA, 
-				CustomerApiUtil.convertStringToLocalDateTime("1986-05-21T07:40:15.100".concat("Z")), 
+				ApiUtils.convertStringToLocalDateTime("1986-05-21T07:40:15.100".concat("Z")), 
 				LocalDateTime.now(), LocalDateTime.now());
 		return customer;
 	}

@@ -30,6 +30,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * DTO da classe {@link Customer}
+ * @author idelvane
+ *
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -51,7 +56,7 @@ public class CustomerDTO extends RepresentationModel<CustomerDTO>{
 	private String document;
 	
 	@NotNull(message="O e-mail não pode ficar em branco")
-	@Email
+	@Email(message="E-mail inválido.")
 	private String email;
 	
 	

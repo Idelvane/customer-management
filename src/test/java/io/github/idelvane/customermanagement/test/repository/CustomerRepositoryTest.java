@@ -1,5 +1,6 @@
 package io.github.idelvane.customermanagement.test.repository;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -27,7 +28,7 @@ import org.springframework.test.context.support.DependencyInjectionTestExecution
 import io.github.idelvane.customermanagement.enums.PersonTypeEnum;
 import io.github.idelvane.customermanagement.model.Customer;
 import io.github.idelvane.customermanagement.repository.CustomerRepository;
-import io.github.idelvane.customermanagement.util.CustomerApiUtil;
+import io.github.idelvane.customermanagement.util.ApiUtils;
 
 /**
  * Classe responsável por testar as funcionalidades de {@link CustomerRepository}
@@ -59,7 +60,7 @@ public class CustomerRepositoryTest {
 	@BeforeAll
 	private void setUp() throws ParseException {
 		
-		Customer customer = new Customer(null, NAME, DOCUMENT, EMAIL, PHONE, PersonTypeEnum.FISICA, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
+		Customer customer = new Customer(null, NAME, DOCUMENT, EMAIL, PHONE, PersonTypeEnum.FISICA, ApiUtils.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
 				LocalDateTime.of(2021, 10, 10, 13, 40), LocalDateTime.now());
 
 		customerRepository.save(customer);
@@ -75,7 +76,7 @@ public class CustomerRepositoryTest {
 	@Order(1)
 	public void testSave() throws ParseException {
 		
-		Customer customerNew = new Customer(null, "José", "38171953034", EMAIL, PHONE, PersonTypeEnum.FISICA, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
+		Customer customerNew = new Customer(null, "José", "38171953034", EMAIL, PHONE, PersonTypeEnum.FISICA, ApiUtils.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
 				LocalDateTime.of(2021, 10, 11, 13, 40), LocalDateTime.now());
 		
 		var response = customerRepository.save(customerNew);
@@ -86,7 +87,7 @@ public class CustomerRepositoryTest {
 	@Order(2)
 	public void testSaveCustomer2() throws ParseException {
 		
-		Customer customerNumber2 = new Customer(null, "Antonio", "04672632059", EMAIL, PHONE, PersonTypeEnum.FISICA, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
+		Customer customerNumber2 = new Customer(null, "Antonio", "04672632059", EMAIL, PHONE, PersonTypeEnum.FISICA, ApiUtils.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
 				LocalDateTime.of(2021, 10, 13, 13, 40), LocalDateTime.now());
 		
 		var response = customerRepository.save(customerNumber2);
@@ -125,12 +126,23 @@ public class CustomerRepositoryTest {
 		LocalDate startDate = LocalDate.of(2021, 10, 10);
 		LocalDate endDate = LocalDate.of(2021, 10, 15);
 		
-		Page<Customer> response = customerRepository.findAllByCreatedAtGreaterThanEqualAndCreatedAtLessThanEqual(CustomerApiUtil.convertLocalDateToLocalDateTime(startDate), 
-				CustomerApiUtil.convertLocalDateToLocalDateTime(endDate), null);
+		Page<Customer> response = customerRepository.findAllByCreatedAtGreaterThanEqualAndCreatedAtLessThanEqual(ApiUtils.convertLocalDateToLocalDateTime(startDate), 
+				ApiUtils.convertLocalDateToLocalDateTime(endDate), null);
 		
 		assertFalse(response.isEmpty());
 	}
 	
+	@Test
+	@Order(6)
+	public void testUpdateCustomer2() throws ParseException {
+		
+		String newDocument = "36152479061";
+		Customer customerNumber2 = new Customer(2L, "Antonio", newDocument, EMAIL, PHONE, PersonTypeEnum.FISICA, ApiUtils.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
+				LocalDateTime.of(2021, 10, 13, 13, 40), LocalDateTime.now());
+		
+		customerRepository.save(customerNumber2);
+		assertEquals(customerNumber2.getDocument(), newDocument);
+	}
 	/**
 	 * Deleta todos os customers criados
 	 */
