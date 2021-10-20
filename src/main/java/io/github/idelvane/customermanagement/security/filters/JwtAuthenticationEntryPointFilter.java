@@ -11,16 +11,15 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
 /**
- * Class that implements AuthenticationEntryPoint interface to modify the headers on the 
- * <code>ServletResponse</code> as necessary to commence the authentication process and 
- * customize unauthorized access responses.
+ * Classe que implementa a interface AuthenticationEntryPoint para modificar os cabeçalhos no 
+ * <code>ServletResponse</code>
  * 
  */
 @Component
 public class JwtAuthenticationEntryPointFilter implements AuthenticationEntryPoint {
 
 	/**
-	 * Method that implements a customization to unauthorized invalid access responses.
+	 * Método que implementa uma customização de resposta de acesso não autorizado
 	 * 
 	 * @see AuthenticationEntryPoint#commence(HttpServletRequest, HttpServletResponse, AuthenticationException)
 	 * 
@@ -30,7 +29,7 @@ public class JwtAuthenticationEntryPointFilter implements AuthenticationEntryPoi
 			authException) throws IOException, ServletException {
 		
 		response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
-				"Access denied. You must be authenticated on the system to access the requested URL.");
+				"Acesso negado. Você precisa se autenticar antes de fazer a requisição.");
 	}
 
 }
