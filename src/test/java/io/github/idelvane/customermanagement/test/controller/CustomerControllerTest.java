@@ -37,7 +37,7 @@ import io.github.idelvane.customermanagement.dto.CustomerDTO;
 import io.github.idelvane.customermanagement.enums.PersonTypeEnum;
 import io.github.idelvane.customermanagement.model.Customer;
 import io.github.idelvane.customermanagement.service.CustomerService;
-import io.github.idelvane.customermanagement.util.CustomerApiUtil;
+import io.github.idelvane.customermanagement.util.ApiUtils;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -79,8 +79,8 @@ public class CustomerControllerTest {
 		
 		BDDMockito.given(customerService.save(Mockito.any(Customer.class))).willReturn(getMockCustomer());
 		
-		mockMvc.perform(MockMvcRequestBuilders.post(URL).content(getPayloadDTO(ID, NAME, DOCUMENT, EMAIL, PHONE, PersonTypeEnum.FISICA, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
-				CustomerApiUtil.convertStringToLocalDateTime(CREATED_AT.concat("Z")), CustomerApiUtil.convertStringToLocalDateTime(UPDATED_AT.concat("Z"))))
+		mockMvc.perform(MockMvcRequestBuilders.post(URL).content(getPayloadDTO(ID, NAME, DOCUMENT, EMAIL, PHONE, PersonTypeEnum.FISICA, ApiUtils.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
+				ApiUtils.convertStringToLocalDateTime(CREATED_AT.concat("Z")), ApiUtils.convertStringToLocalDateTime(UPDATED_AT.concat("Z"))))
 			.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
 			.headers(headers))
 		.andDo(MockMvcResultHandlers.print())
@@ -101,8 +101,8 @@ public class CustomerControllerTest {
 		
 		BDDMockito.given(customerService.save(Mockito.any(Customer.class))).willReturn(getMockCustomer());
 		
-		mockMvc.perform(MockMvcRequestBuilders.post(URL).content(getPayloadDTO(ID, NAME, null, EMAIL, PHONE, PersonTypeEnum.FISICA, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
-				CustomerApiUtil.convertStringToLocalDateTime(CREATED_AT.concat("Z")), CustomerApiUtil.convertStringToLocalDateTime(UPDATED_AT.concat("Z"))))
+		mockMvc.perform(MockMvcRequestBuilders.post(URL).content(getPayloadDTO(ID, NAME, null, EMAIL, PHONE, PersonTypeEnum.FISICA, ApiUtils.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
+				ApiUtils.convertStringToLocalDateTime(CREATED_AT.concat("Z")), ApiUtils.convertStringToLocalDateTime(UPDATED_AT.concat("Z"))))
 				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
 				.headers(headers))
 		.andExpect(status().isBadRequest())
@@ -111,8 +111,8 @@ public class CustomerControllerTest {
 	
 	private Customer getMockCustomer() throws ParseException {
 		
-		Customer customer = new Customer(ID, NAME, DOCUMENT, EMAIL, PHONE, PersonTypeEnum.FISICA, CustomerApiUtil.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
-				CustomerApiUtil.convertStringToLocalDateTime(CREATED_AT.concat("Z")), CustomerApiUtil.convertStringToLocalDateTime(UPDATED_AT.concat("Z")));
+		Customer customer = new Customer(ID, NAME, DOCUMENT, EMAIL, PHONE, PersonTypeEnum.FISICA, ApiUtils.convertStringToLocalDateTime(BIRTH_DATE.concat("Z")), 
+				ApiUtils.convertStringToLocalDateTime(CREATED_AT.concat("Z")), ApiUtils.convertStringToLocalDateTime(UPDATED_AT.concat("Z")));
 		
 		return customer;
 	}

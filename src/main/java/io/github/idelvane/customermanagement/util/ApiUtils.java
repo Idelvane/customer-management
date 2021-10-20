@@ -16,7 +16,7 @@ import io.github.idelvane.customermanagement.model.Customer;
  * 
  * @author Idelvane
  */
-public class CustomerApiUtil {
+public class ApiUtils {
 	
 	/**
 	 * Representa o API version nos requests/responses header
@@ -29,7 +29,7 @@ public class CustomerApiUtil {
 	public static final String HEADER_API_KEY = "X-api-key";
 	
 	
-	private CustomerApiUtil() {}
+	private ApiUtils() {}
 	
 	/**
 	 * Converte uma String em LocalDateTime.

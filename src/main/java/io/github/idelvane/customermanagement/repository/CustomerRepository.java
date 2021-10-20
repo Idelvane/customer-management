@@ -11,6 +11,11 @@ import org.springframework.stereotype.Repository;
 
 import io.github.idelvane.customermanagement.model.Customer;
 
+/**
+ * Interface que implementa o repositório para Customer, possui metodo padrão do JPA CRUD e outros personalizados
+ * @author idelvane
+ *
+ */
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long>{
 

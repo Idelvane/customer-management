@@ -17,7 +17,7 @@ import org.modelmapper.ModelMapper;
 
 import io.github.idelvane.customermanagement.dto.CustomerDTO;
 import io.github.idelvane.customermanagement.enums.PersonTypeEnum;
-import io.github.idelvane.customermanagement.util.CustomerApiUtil;
+import io.github.idelvane.customermanagement.util.ApiUtils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -81,6 +81,6 @@ public class Customer implements Serializable{
 	}
 	
 	public int getAge() {
-		return CustomerApiUtil.calculateAge(birthDate);
+		return ApiUtils.calculateAge(birthDate);
 	}
 }
